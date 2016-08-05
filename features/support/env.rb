@@ -3,13 +3,15 @@ require './config/environment'
 require 'minitest/spec'
 require 'database_cleaner'
 require 'capybara/poltergeist'
-require 'rspec'
+require 'rspec/expectations'
 
 # DB stuff
 DatabaseCleaner.strategy = :truncation
 
 # Run settings
 Spinach.config.save_and_open_page_on_failure = true
+
+# JavaScript stuff
 Capybara.javascript_driver = :poltergeist
 
 # Hooks

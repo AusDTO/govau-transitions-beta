@@ -9,6 +9,7 @@ source 'https://rubygems.org'
 gem 'rails', '>= 5.0.0.beta4', '< 5.1'
 gem 'pg', '>= 0.19.0.beta'
 gem 'react-rails', '~> 1.5'
+gem 'jquery-rails'
 
 group :development do
   gem 'web-console', '~> 3.0'
@@ -17,10 +18,11 @@ group :development do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec', require: true
   gem 'rspec-rails', '~> 3.5'
   gem 'poltergeist', '~> 1.10'
   gem 'database_cleaner', '~> 1.5'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :development, :test do
