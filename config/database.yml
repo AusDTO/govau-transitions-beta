@@ -1,25 +1,34 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
+# Initially copied from spikes repo
+
+common: &common
+  host:     <%= ENV['DB_HOST'] || '127.0.0.1' %>
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV['DB_PWD'] || '' %>
+  template: template1
+  adapter:  postgresql
+  encoding: unicode
+  pool:     <%= ENV['DB_CONCURRENCY'] || 10 %>
+  timeout:  5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  <<: *common
+  database: <%= ENV['DB_NAME'] || 'govau_transitions_development' %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+# https://circleci.com/docs/environment#databases
+# Both postgresql and mysql are set up to use the ubuntu user, have a database called circle_test available, and don't require any password.
 test:
-  <<: *default
-  database: db/test.sqlite3
+  <<: *common
+  database: <%= ENV['DB_NAME_TEST'] || 'govau_transitions_test' %><%= ENV['TEST_ENV_NUMBER'] %>
+  pool: 5
+
+staging:
+  <<: *common
+  database: <%= ENV['DB_NAME'] || 'govau_transitions_staging' %>
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  database: <%= ENV['DB_NAME'] || 'govau_transitions' %>
+  url: <%= ENV['BLUE_GREEN_URL'] || ENV['DATABASE_URL'] %>
+  adapter:  postgresql
+  encoding: unicode
+  pool:     <%= ENV['DB_CONCURRENCY'] || 10 %>
+  timeout:  5000
