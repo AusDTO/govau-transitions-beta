@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 # Core gems
 gem 'rails', '>= 5.0.0.beta4', '< 5.1'
 gem 'pg', '>= 0.19.0.beta'
-gem 'react_on_rails', '~> 5'
+gem 'react_on_rails', '~> 6'
 
 group :development do
   gem 'web-console', '~> 3.0'

@@ -126,7 +126,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    react_on_rails (5.2.0)
+    react_on_rails (6.0.5)
+      addressable
       connection_pool
       execjs (~> 2.5)
       foreman
@@ -196,7 +197,7 @@ DEPENDENCIES
   phantomjs
   poltergeist (~> 1.10)
   rails (>= 5.0.0.beta4, < 5.1)
-  react_on_rails (~> 5)
+  react_on_rails (~> 6)
   rspec
   rspec-rails (~> 3.5)
   spinach-rails (~> 0.2)
