@@ -9,6 +9,8 @@ source 'https://rubygems.org'
 gem 'rails', '>= 5.0.0.beta4', '< 5.1'
 gem 'pg', '>= 0.19.0.beta'
 gem 'react_on_rails', '~> 6'
+gem 'mini_racer'
+gem 'execjs'
 
 group :development do
   gem 'web-console', '~> 3.0'

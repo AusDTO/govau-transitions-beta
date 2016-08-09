@@ -8,14 +8,14 @@ class Spinach::Features::IsomorphicComponents < Spinach::FeatureSteps
   end
 
   step 'I browse to the Hello page' do
-    visit '/hello'
+    visit '/hello_world'
   end
 
   step 'I should see a greeting' do
-    expect(page).to have_css ".greeting"
+    expect(page).to have_content 'Hello,'
   end
 
-  step 'it should say hello' do
-    expect(page).to have_content 'hello'
+  step 'it should greet me as Stranger' do
+    expect(page).to have_content 'Stranger'
   end
 end
