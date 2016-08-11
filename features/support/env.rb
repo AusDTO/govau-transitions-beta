@@ -4,6 +4,10 @@ require 'minitest/spec'
 require 'database_cleaner'
 require 'capybara/poltergeist'
 require 'rspec/expectations'
+require 'capybara'
+require 'spinach/capybara'
+require 'selenium-webdriver'
+require 'site_prism'
 
 # DB stuff
 DatabaseCleaner.strategy = :truncation

@@ -14,8 +14,10 @@ Feature: Relevant questions
     When I browse to the Phoenix Regeneration page
     Then I should be asked how many months it has been since my last regeneration
     When I answer twelve months
+    And I proceed
     Then I should be asked if I am near flammable objects
     When I answer yes
+    And I proceed
     Then I should be advised to move location
 
   Scenario: Middle of regeneration cycle in a log cabin
@@ -24,6 +26,7 @@ Feature: Relevant questions
     When I browse to the Phoenix Regeneration page
     Then I should be asked how many months it has been since my last regeneration
     When I answer six months
+    And I proceed
     Then I should be advised to check back in six months
 
   Scenario: End of regeneration cycle on a rock
@@ -32,6 +35,8 @@ Feature: Relevant questions
     When I browse to the Phoenix Regeneration page
     Then I should be asked how many months it has been since my last regeneration
     When I answer twelve months
+    And I proceed
     Then I should be asked if I am near flammable objects
     When I answer no
+    And I proceed
     Then I should be advised to sit tight and stay calm

@@ -11,6 +11,7 @@ gem 'pg', '>= 0.19.0.beta'
 gem 'react_on_rails', '~> 6'
 gem 'mini_racer'
 gem 'execjs'
+gem 'humanize'
 
 group :development do
   gem 'web-console', '~> 3.0'
@@ -24,11 +25,13 @@ group :test do
   gem 'poltergeist', '~> 1.10'
   gem 'database_cleaner', '~> 1.5'
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  gem 'fabrication', '~> 2.15'
+  gem 'site_prism', '~> 2.9'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development, :test do
   gem 'spinach-rails', '~> 0.2'
-  gem 'dotenv-rails'
 end
 
 # Eurgh
