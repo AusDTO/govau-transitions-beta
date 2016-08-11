@@ -12,6 +12,7 @@ gem 'react_on_rails', '~> 6'
 gem 'mini_racer'
 gem 'execjs'
 gem 'humanize'
+gem 'friendly_id', github: 'norman/friendly_id', ref: 'aff05645'
 
 group :development do
   gem 'web-console', '~> 3.0'
