@@ -2,7 +2,7 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
   step 'phoenixes have a twelve-month regeneration cycle' do
     @cycle_question = Fabricate :single_choice_question do
       prompt { 'How many months has it been since your last regeneration?' }
-      options(count: 13) { |attrs, i| Fabricate(:option, value: i, label: i.humanize }
+      options(count: 13) { |attrs, i| { value: i, label: i.humanize } }
     end
 
     @about_to_ignite_condition = Fabricate :math_condition do
@@ -27,7 +27,7 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
       body { 'Check back in %s months' }
       conditions {[ @not_about_to_ignite_condition ]}
       interpolations {[{ source: @cycle_question,
-        transformations: ['12 - %i', '%i.humanize' }]} #TODO security!
+        transformations: ['12 - %i.to_i', '%i.humanize' }]} #TODO security!
     end
 
     @move_location_result = Fabricate :simple_result do

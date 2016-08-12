@@ -1,8 +1,12 @@
 class Question < ApplicationRecord
+  include Storext.model
+
   belongs_to :wizard
 
   validates :order_num, uniqueness: { scope: :wizard_id }, presence: true
   validates :prompt, presence: true
+  validates :type, exclusion: { in: [nil, 'Question'], message: 'Question is' +
+    ' an abstract class. Use own of its concrete derived classes, instead.' }
 
   before_validation :generate_order_num
 

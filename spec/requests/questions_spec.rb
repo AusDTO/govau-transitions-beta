@@ -8,25 +8,26 @@ RSpec.describe "Questions", type: :request do
     let!(:question_two) { Fabricate(:single_choice_question, wizard: wizard) }
     let!(:question_three) { Fabricate(:single_choice_question, wizard: wizard) }
 
+    before do
+      get "/transitions/#{wizard.slug}/#{answer_parts.join('/')}"
+    end
+
+    subject { response.body }
+
     describe 'Wizard landing page' do
-      it 'displays the first question' do
-        get "/#{wizard.slug}"
-        expect(response.body).to include(question_one.body)
-      end
+      let(:answer_parts) { [] }
+      it { is_expected.to include question_one.prompt }
     end
 
     describe 'Second question' do
-      it 'displays the second question' do
-        get "/#{wizard.slug}/true"
-        expect(response.body).to include(question_two.body)
-      end
+      let(:answer_parts) { [question_one.id, 'yes'] }
+      it { is_expected.to include question_two.prompt }
     end
 
     describe 'Third question' do
-      it 'displays the third question' do
-        get "/#{wizard.slug}/true/#{question_one.options.first.value}"
-        expect(response.body).to include(question_three.body)
-      end
+      let(:answer_parts) { [question_one.id, 'yes', question_two.id,
+        question_two.options.first.value] }
+      it { is_expected.to include question_three.prompt }
     end
   end
 end

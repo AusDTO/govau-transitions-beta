@@ -13,6 +13,8 @@ gem 'mini_racer'
 gem 'execjs'
 gem 'humanize'
 gem 'friendly_id', github: 'norman/friendly_id', ref: 'aff05645'
+gem 'storext', '~> 2.2'
+gem 'haml', '~> 4.0.7'
 
 group :development do
   gem 'web-console', '~> 3.0'

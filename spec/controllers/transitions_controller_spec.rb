@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WizardsController, type: :controller do
+RSpec.describe TransitionsController, type: :controller do
   describe 'GET #index' do
     before do
       get :index
@@ -10,6 +10,6 @@ RSpec.describe WizardsController, type: :controller do
   end
 
   describe 'GET #show' do
+    
   end
-
 end
