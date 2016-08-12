@@ -11,6 +11,7 @@ gem 'pg', '>= 0.19.0.beta'
 gem 'react_on_rails', '~> 6'
 gem 'mini_racer'
 gem 'execjs'
+gem 'sass-rails', '~> 5.0'
 
 group :development do
   gem 'web-console', '~> 3.0'
