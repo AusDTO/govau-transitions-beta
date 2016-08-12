@@ -46,3 +46,6 @@ node_modules
 
 # Generated js bundles
 /app/assets/webpack/*
+
+# Ignors any scss and css files that have been added such as ui kit
+/app/assets/stylesheets/vendor/*
