@@ -1,6 +1,4 @@
 class TransitionsController < ApplicationController
-  before_action :parse_answers_path, only: :show
-
   def index
     @wizards = Wizard.all
   end
@@ -9,15 +7,21 @@ class TransitionsController < ApplicationController
     @wizard = Wizard.friendly.find params[:id]
 
     @question = @wizard.questions.reject {|question|
-      @answers.has_key? question.id.to_s
-    }.first
-
-    #TODO also apply conditions
+      answers.has_key? question.id.to_s
+    }.select {|question|
+      question.conditions.all do |condition|
+        condition.check? answer_for condition.source
+      end
+    }
   end
 
   private
 
-  def parse_answers_path
-    @answers = params[:answers_path]&.split('/')&.each_slice(2)&.to_h || {}
+  def answer_for(question)
+    answers[question.id.to_s]
+  end
+
+  def answers
+    @answers ||= params[:answers_path]&.split('/')&.each_slice(2)&.to_h || {}
   end
 end

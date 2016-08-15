@@ -17,7 +17,7 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
   step 'their regeneration is dangerous for their surroundings' do
     @flammable_question = Fabricate :boolean_question do
       prompt { 'Are you near flammable objects at the moment?' }
-      conditions { [{ @about_to_ignite_condition }] }
+      conditions {[ @about_to_ignite_condition ]}
     end
   end
 
@@ -27,7 +27,7 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
       body { 'Check back in %s months' }
       conditions {[ @not_about_to_ignite_condition ]}
       interpolations {[{ source: @cycle_question,
-        transformations: ['12 - %i.to_i', '%i.humanize' }]} #TODO security!
+        transformations: ['12 - %i.to_i', '%i.humanize' ]}]} #TODO security!
     end
 
     @move_location_result = Fabricate :simple_result do

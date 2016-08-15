@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812044951) do
+ActiveRecord::Schema.define(version: 20160815033954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conditions", force: :cascade do |t|
+    t.integer  "source_id"
+    t.string   "conditional_type"
+    t.integer  "conditional_id"
+    t.string   "operator"
+    t.jsonb    "meta"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["conditional_type", "conditional_id"], name: "index_conditions_on_conditional_type_and_conditional_id", using: :btree
+    t.index ["source_id"], name: "index_conditions_on_source_id", using: :btree
+  end
 
   create_table "questions", force: :cascade do |t|
     t.integer  "wizard_id"
