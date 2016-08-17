@@ -31,9 +31,9 @@ RSpec.describe "Questions", type: :request do
 
   context 'Conditional question' do
     let(:condition_yes) { Fabricate(:condition, source: question_one,
-      operator: 'eq', comparator: 'yes') }
+      operator: 'eq', comparators: ['yes']) }
     let(:condition_no) { Fabricate(:condition, source: question_one,
-      operator: 'eq', comparator: 'no') }
+      operator: 'eq', comparators: ['no']) }
     let!(:question_two) { Fabricate(:single_choice_question, wizard: wizard,
       conditions: [condition_yes]) }
     let!(:question_three) { Fabricate(:single_choice_question, wizard: wizard,

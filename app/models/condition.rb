@@ -1,7 +1,7 @@
 class Condition < ApplicationRecord
   include Storext.model
-  
-  OPERATORS = %w(eq gt lt ne in ex)
+
+  OPERATORS = %w(eq ne gt lt in ex)
 
   belongs_to :source, class_name: 'Question'
   belongs_to :conditional, polymorphic: true
@@ -15,10 +15,53 @@ class Condition < ApplicationRecord
   validate :appropriate_comparators
 
   def check?(*answers)
+    case operator
+    when 'ne', 'ex'
+      answers.all? {|answer| check_answer(answer)}
+    else
+      answers.any? {|answer| check_answer(answer)}
+    end
+  end
 
+  def negate
+    negated_operator, negated_comparators = case operator
+    when 'eq'
+      ['ne', comparator]
+    when 'ne'
+      ['eq', comparator]
+    when 'gt'
+      ['lt', numeric_comparator + 1]
+    when 'lt'
+      ['gt', numeric_comparator - 1]
+    when 'in'
+      ['ex', comparators]
+    when 'ex'
+      ['in', comparators]
+    end
+
+    Condition.new source: source,
+      operator: negated_operator,
+      comparators: negated_comparators
   end
 
   private
+
+  def check_answer(answer)
+    case operator
+    when 'eq'
+      answer.to_s == comparator
+    when 'ne'
+      answer.to_s != comparator
+    when 'lt'
+      answer.to_i < numeric_comparator
+    when 'gt'
+      answer.to_i > numeric_comparator
+    when 'in'
+      comparators.include? answer.to_s
+    when 'ex'
+      !comparators.include? answer.to_s
+    end
+  end
 
   # For operators other than 'in', there will be only one comparator
   def comparator

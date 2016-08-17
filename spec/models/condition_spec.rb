@@ -9,153 +9,138 @@ RSpec.describe Condition, type: :model do
     %w(eq gt lt ne in ex)) }
 
   describe 'appropriate comparators validation' do
-    subject { Fabricate(:condition) do
-      operator { operator }
-      comparators { comparators }
-    end }
+    subject { Fabricate.build(:condition, operator: operator,
+      comparators: comparators) }
 
-    shared_examples 'enforces single comparator' do |op|
-      let(:operator) { op }
-      let(:comparators) { [1, 2, 3] }
-      it { is_expected.not_to be_valid }
+    shared_examples 'enforces single comparator' do
+      context do
+        let(:comparators) { [1, 2, 3] }
+        it { is_expected.not_to be_valid }
+      end
     end
 
-    shared_examples 'permits multiple comparators' do |op|
-      let(:operator) { op }
-      let(:comparators) { [1, 2, 3] }
-      it { is_expected.to be_valid }
+    shared_examples 'permits multiple comparators' do
+      context do
+        let(:comparators) { [1, 2, 3] }
+        it { is_expected.to be_valid }
+      end
     end
 
-    shared_examples 'enforces numeric comparator' do |op|
-      let(:operator) { op }
-      let(:comparators) { ['foo'] }
-      it { is_expected.not_to be_valid }
+    shared_examples 'enforces numeric comparator' do
+      context do
+        let(:comparators) { ['foo'] }
+        it { is_expected.not_to be_valid }
+      end
     end
 
-    shared_examples 'permits string comparator' do  |op|
-      let(:operator) { op }
-      let(:comparators) { ['foo'] }
-      it { is_expected.to be_valid }
+    shared_examples 'permits string comparator' do
+      context do
+        let(:comparators) { ['foo'] }
+        it { is_expected.to be_valid }
+      end
     end
-
-    context 'equality' do
-      include_examples 'enforces single comparator', 'eq'
-      include_examples 'permits string comparator', 'eq'
-    end
-
-    context 'inequality' do
-      include_examples 'enforces single comparator', 'ne'
-      include_examples 'permits string comparator', 'ne'
-    end
-
-    context 'greater than' do
-      include_examples 'enforces single comparator', 'gt'
-      include_examples 'enforces numeric comparator', 'gt'
-    end
-
-    context 'less than' do
-      include_examples 'enforces single comparator', 'lt'
-      include_examples 'enforces numeric comparator', 'lt'
-    end
-
-    context 'inclusion' do
-      include_examples 'permits multiple comparators', 'in'
-      include_examples 'permits string comparator', 'in'
-    end
-
-    context 'exclusion' do
-      include_examples 'permits multiple comparators', 'ex'
-      include_examples 'permits string comparator', 'ex'
-    end
-  end
-
-  describe 'check?' do
-    let(:question) { Fabricate(:single_choice_question) do
-      options { %w(1 2 3).collect {|word| { value: word, label: word }}} end }
-    let(:condition) { Fabricate(:condition, operator: operator,
-      comparators: [2], source: question) }
-    subject { condition.check? answer }
 
     context 'equality' do
       let(:operator) { 'eq' }
+      include_examples 'enforces single comparator'
+      include_examples 'permits string comparator'
+    end
 
-      context 'equal' do
-        let(:answer) { '2' }
-        it { is_expected.to be_true }
-      end
-
-      context 'unequal' do
-        let(:answer) { '3' }
-        it { is_expected.not_to be_true }
-      end
-
-      context 'invalid' do
-        let(:answer) { '4' }
-
-        it 'should throw an error' do
-          expect{ subject }.to raise_error
-        end
-      end
+    context 'inequality' do
+      let(:operator) { 'ne' }
+      include_examples 'enforces single comparator'
+      include_examples 'permits string comparator'
     end
 
     context 'greater than' do
       let(:operator) { 'gt' }
+      include_examples 'enforces single comparator'
+      include_examples 'enforces numeric comparator'
+    end
 
-      context 'greater' do
-        let(:answer) { '3' }
-        it { is_expected.to be_true }
-      end
+    context 'less than' do
+      let(:operator) { 'lt' }
+      include_examples 'enforces single comparator'
+      include_examples 'enforces numeric comparator'
+    end
 
-      context 'lesser' do
-        let(:answer) { '1' }
-        it { is_expected.not_to be_true }
-      end
+    context 'inclusion' do
+      let(:operator) { 'in' }
+      include_examples 'permits multiple comparators'
+      include_examples 'permits string comparator'
+    end
 
-      context 'equal' do
-        let(:answer) { '2' }
-        it { is_expected.not_to be_true }
-      end
+    context 'exclusion' do
+      let(:operator) { 'ex' }
+      include_examples 'permits multiple comparators'
+      include_examples 'permits string comparator'
+    end
+  end
+
+  describe 'execution and negation' do
+    let(:question) { Fabricate(:single_choice_question) do
+      options { %w(1 2 3).collect {|word| { value: word, label: word }}} end }
+    subject { Fabricate(:condition, operator: operator,
+      comparators: comparators, source: question) }
+    let(:comparators) { [2] } # Default - can be overriden in blocks
+
+    shared_examples 'check answer' do |answer, bool|
+      specify { expect(subject.check?(answer)).to be bool }
+    end
+
+    shared_examples 'negates to' do |obverse_operator, obverse_comparators|
+      let(:negated) { subject.negate }
+      specify { expect(negated.operator).to eq obverse_operator }
+      specify { expect(negated.comparators).to eq obverse_comparators }
+    end
+
+    context 'equality' do
+      let(:operator) { 'eq' }
+      include_examples 'check answer', 2, true
+      include_examples 'check answer', 3, false
+      include_examples 'negates to', 'ne', ['2']
+    end
+
+    context 'greater than' do
+      let(:operator) { 'gt' }
+      include_examples 'check answer', 3, true
+      include_examples 'check answer', 1, false
+      include_examples 'check answer', 2, false
+      include_examples 'negates to', 'lt', ['3']
     end
 
     context 'lesser than' do
       let(:operator) { 'lt' }
-
-      context 'greater' do
-        let(:answer) { '3' }
-        it { is_expected.not_to be_true }
-      end
-
-      context 'lesser' do
-        let(:answer) { '1' }
-        it { is_expected.to be_true }
-      end
-
-      context 'equal' do
-        let(:answer) { '2' }
-        it { is_expected.not_to be_true }
-      end
+      include_examples 'check answer', 3, false
+      include_examples 'check answer', 1, true
+      include_examples 'check answer', 2, false
+      include_examples 'negates to', 'gt', ['1']
     end
 
     context 'not equal' do
       let(:operator) { 'ne' }
-
-      context 'greater' do
-        let(:answer) { '3' }
-        it { is_expected.to be_true }
-      end
-
-      context 'lesser' do
-        let(:answer) { '1' }
-        it { is_expected.to be_true }
-      end
-
-      context 'equal' do
-        let(:answer) { '2' }
-        it { is_expected.not_to be_true }
-      end
+      include_examples 'check answer', 3, true
+      include_examples 'check answer', 1, true
+      include_examples 'check answer', 2, false
+      include_examples 'negates to', 'eq', ['2']
     end
-  end
 
-  describe 'negate' do
+    context 'inclusion' do
+      let(:operator) { 'in' }
+      let(:comparators) { [1, 2] }
+      include_examples 'check answer', 3, false
+      include_examples 'check answer', 1, true
+      include_examples 'check answer', 2, true
+      include_examples 'negates to', 'ex', ['1', '2']
+    end
+
+    context 'exclusion' do
+      let(:operator) { 'ex' }
+      let(:comparators) { [1, 2] }
+      include_examples 'check answer', 3, true
+      include_examples 'check answer', 1, false
+      include_examples 'check answer', 2, false
+      include_examples 'negates to', 'in', ['1', '2']
+    end
   end
 end
