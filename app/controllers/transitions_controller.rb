@@ -5,14 +5,12 @@ class TransitionsController < ApplicationController
 
   def show
     @wizard = Wizard.friendly.find params[:id]
-
+    
     @question = @wizard.questions.reject {|question|
       answers.has_key? question.id.to_s
     }.select {|question|
-      question.conditions.all do |condition|
-        condition.check? answer_for condition.source
-      end
-    }
+      question.visible_given_answers? answers
+    }.first
   end
 
   private

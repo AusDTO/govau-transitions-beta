@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   include Storext.model
+  include Conditional
 
   belongs_to :wizard
 

@@ -4,13 +4,13 @@ RSpec.describe "Questions", type: :request do
   let(:wizard) { Fabricate(:wizard) }
   let!(:question_one) { Fabricate(:boolean_question, wizard: wizard) }
   let(:req) { get "/transitions/#{wizard.slug}/#{answer_parts.join('/')}" }
+  subject { response.body }
 
   context 'Linear progression, no branching' do
     let!(:question_two) { Fabricate(:single_choice_question, wizard: wizard) }
     let!(:question_three) { Fabricate(:single_choice_question, wizard: wizard) }
 
     before { req }
-    subject { response.body }
 
     describe 'Wizard landing page' do
       let(:answer_parts) { [] }
@@ -38,6 +38,8 @@ RSpec.describe "Questions", type: :request do
       conditions: [condition_yes]) }
     let!(:question_three) { Fabricate(:single_choice_question, wizard: wizard,
       conditions: [condition_no]) }
+
+    before { req }
 
     describe 'Answering yes' do
       let(:answer_parts) { [question_one.id, 'yes'] }
