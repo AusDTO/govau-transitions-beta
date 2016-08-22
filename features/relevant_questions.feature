@@ -1,3 +1,4 @@
+@isolate
 Feature: Relevant questions
   In order quickly to find out information
   As a citizen contemplating a transition

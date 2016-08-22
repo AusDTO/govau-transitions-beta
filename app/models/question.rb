@@ -9,6 +9,8 @@ class Question < ApplicationRecord
   validates :type, exclusion: { in: [nil, 'Question'], message: 'Question is' +
     ' an abstract class. Use own of its concrete derived classes, instead.' }
 
+  scope :ordered, -> { order :order_num }
+
   before_validation :generate_order_num
 
   private

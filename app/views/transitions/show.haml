@@ -1,9 +1,12 @@
 %h1
   = @wizard.name
-%h2
+%h2#prompt
   = @question.prompt
-%p
-  TODO: React component: options
-%nav
-  =link_to 'Back', 'javascript:history.go(-1);'
-  TODO: React component: next button
+= simple_form_for(@question, as: :question, method: 'post', url: request.fullpath) do |f|
+  %p
+    = f.input :id, as: :hidden
+    = f.input :options, collection: @question.options, as: :radio_buttons,
+      label_method: 'label', value_method: 'value'
+  %nav
+    = link_to 'Back', 'javascript:history.go(-1);'
+    = f.button :submit, 'Next'
