@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815033954) do
+ActiveRecord::Schema.define(version: 20160826022117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.integer  "question_id"
+    t.string   "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["owner_type", "owner_id"], name: "index_answers_on_owner_type_and_owner_id", using: :btree
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+  end
 
   create_table "conditions", force: :cascade do |t|
     t.integer  "source_id"
@@ -38,6 +49,21 @@ ActiveRecord::Schema.define(version: 20160815033954) do
     t.index ["wizard_id"], name: "index_questions_on_wizard_id", using: :btree
   end
 
+  create_table "results", force: :cascade do |t|
+    t.integer  "wizard_id"
+    t.string   "type"
+    t.string   "title"
+    t.jsonb    "meta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wizard_id"], name: "index_results_on_wizard_id", using: :btree
+  end
+
+  create_table "session_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "wizards", force: :cascade do |t|
     t.string   "name"
     t.string   "slug"
@@ -46,4 +72,5 @@ ActiveRecord::Schema.define(version: 20160815033954) do
   end
 
   add_foreign_key "questions", "wizards"
+  add_foreign_key "results", "wizards"
 end

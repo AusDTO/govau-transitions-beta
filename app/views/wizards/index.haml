@@ -2,4 +2,4 @@
 %ul
   - @wizards.each do |wizard|
     %li
-      =link_to wizard.name, transition_path(wizard)
+      =link_to wizard.name, wizard_path(wizard)

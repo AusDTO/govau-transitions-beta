@@ -47,19 +47,21 @@ class Condition < ApplicationRecord
   private
 
   def check_answer(answer)
+    value = answer.value
+
     case operator
     when 'eq'
-      answer.to_s == comparator
+      value.to_s == comparator
     when 'ne'
-      answer.to_s != comparator
+      value.to_s != comparator
     when 'lt'
-      answer.to_i < numeric_comparator
+      value.to_i < numeric_comparator
     when 'gt'
-      answer.to_i > numeric_comparator
+      value.to_i > numeric_comparator
     when 'in'
-      comparators.include? answer.to_s
+      comparators.include? value.to_s
     when 'ex'
-      !comparators.include? answer.to_s
+      !comparators.include? value.to_s
     end
   end
 

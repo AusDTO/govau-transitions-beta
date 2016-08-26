@@ -13,6 +13,7 @@ Feature: Relevant questions
     Given I am a phoenix about to burst into flame
     And I am in a log cabin
     When I browse to the Phoenix Regeneration page
+    And I begin the wizard
     Then I should be asked how many months it has been since my last regeneration
     When I answer twelve months
     And I proceed
@@ -25,15 +26,17 @@ Feature: Relevant questions
     Given I am a phoenix not about to burst into flame
     And I am in a log cabin
     When I browse to the Phoenix Regeneration page
+    And I begin the wizard
     Then I should be asked how many months it has been since my last regeneration
     When I answer six months
     And I proceed
-    Then I should be advised to check back in six months
+    Then I should be advised to check back closer to the time
 
   Scenario: End of regeneration cycle on a rock
     Given I am a phoenix about to burst into flame
     And I am perching on a rock
     When I browse to the Phoenix Regeneration page
+    And I begin the wizard
     Then I should be asked how many months it has been since my last regeneration
     When I answer twelve months
     And I proceed

@@ -9,9 +9,10 @@ module Conditional
     has_many :conditions, as: :conditional
   end
 
-  def visible_given_answers?(answers_hash)
+  def visible_given_answers?(answers)
     conditions.all? do |condition|
-      condition.check? answers_hash[condition.source.id.to_s]
+      relevant_answers = answers.to_question condition.source
+      relevant_answers.empty? || condition.check?(*relevant_answers.to_a)
     end
   end
 end
