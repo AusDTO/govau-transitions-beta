@@ -4,12 +4,20 @@ require 'minitest/spec'
 require 'database_cleaner'
 require 'capybara/poltergeist'
 require 'rspec/expectations'
+require 'capybara'
+require 'spinach/capybara'
+require 'selenium-webdriver'
+require 'site_prism'
 
 # DB stuff
 DatabaseCleaner.strategy = :truncation
 
 # Run settings
-Spinach.config.save_and_open_page_on_failure = true
+# Spinach.config.save_and_open_page_on_failure = true
+
+SitePrism.configure do |config|
+	config.use_implicit_waits = false
+end
 
 # JavaScript stuff
 Capybara.javascript_driver = :poltergeist

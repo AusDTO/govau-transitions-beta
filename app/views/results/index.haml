@@ -1,0 +1,9 @@
+%h1
+  = @wizard.name
+%h2 Your results
+- @results.each do |result|
+  .result
+    %h3
+      = result.title
+    %p
+      = result.body

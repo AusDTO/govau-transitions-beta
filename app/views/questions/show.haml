@@ -1,0 +1,12 @@
+%h1
+  = @wizard.name
+%h2#prompt
+  = @question.prompt
+= simple_form_for(:answer, url: question_answers_path(question_id: @question.id)) do |f|
+  %p
+    = f.input :id, as: :hidden
+    = f.input :options, collection: @question.options, as: :radio_buttons,
+      label_method: 'label', value_method: 'value'
+  %nav
+    = link_to 'Back', 'javascript:history.go(-1);'
+    = f.button :submit, 'Next'

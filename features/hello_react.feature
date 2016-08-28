@@ -1,13 +1,13 @@
 Feature: Isomorphic components
 
-  Scenario: JS-disabled client
+  Scenario: JS-enabled client
     Given I have JavaScript switched on
     When I browse to the Hello page
     Then I should see a greeting
     And it should greet me as Stranger
 
   @javascript
-  Scenario: JS-enabled client
+  Scenario: JS-disabled client
     Given I have JavaScript switched off
     When I browse to the Hello page
     Then I should see a greeting

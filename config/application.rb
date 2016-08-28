@@ -12,6 +12,8 @@ module GovauTransitionsBeta
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.generators do |g|
+      g.test_framework :rspec, fixture_replacement: :fabrication
+      g.fixture_replacement :fabrication, dir: 'spec/fabricators'
       g.stylesheets false
       g.javascripts false
       g.helper false
