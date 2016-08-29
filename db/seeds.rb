@@ -12,7 +12,47 @@ SingleChoiceQuestion.create wizard: wizard do |q|
 end
 
 SingleChoiceQuestion.create wizard: wizard do |q|
-  q.prompt = 'Are you receiving a pension?'
-  q.options = Option.quick_list 'Age pension', 'Disability pension',
-    'Veteran/war widow or widower', 'Don\'t know', 'Other'
+  q.prompt = 'Which best describes your current need?'
+  q.options = Option.quick_list 'I\'m thinking about the future',
+    'I\'m starting not to manage', 'I know that I need some help',
+    'I\'m in a crisis'
+end
+
+MultipleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'What support are you interested in learning about?'
+  q.options = Option.quick_list 'Staying at home',
+    'Moving to a more appropriate setup', 'Getting out and about',
+    'Health conditions'
+end
+
+MultipleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'Would you like support information for any of these health issues?'
+  q.options = Option.quick_list 'Arthritis', 'Dementia', 'Diabetes',
+    'Emphysema', 'Incontinence', 'None of the above'
+end
+
+MultipleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'Are you concerned about any of these emotional issues?'
+  q.options = Option.quick_list 'Anxiety', 'Depression', 'Loneliness',
+    'None of the above'
+end
+
+MultipleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'What help is needed at home?'
+  q.options = Option.quick_list 'Cooking and eating', 'Home maintenance',
+    'Housework', 'Managing medications', 'Moving around the home',
+    'Nursing care', 'Care for my cultural background', 'Personal hygiene',
+    'Shopping', 'Staying fit', 'Supervision', 'Transport', 'None'
+end
+
+LocationQuestion.create wizard: wizard do |q|
+  q.prompt = 'Where do you live?'
+end
+
+MultipleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'What options are you interested in finding out about?'
+  q.options = Option.quick_list 'Living near to xxx', 'Single storey',
+    'Supervision and support', 'Nursing care', 'Staying independent at home',
+    'Help in maintaining a home', 'Living in a community',
+    'Cultural connections', 'None of the above'
 end

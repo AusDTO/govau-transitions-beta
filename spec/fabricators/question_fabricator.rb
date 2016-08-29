@@ -8,6 +8,10 @@ Fabricator(:single_choice_question, from: :question,
   options { %w(foo bar foobar).collect {|word| { value: word, label: word } } }
 end
 
+Fabricator(:multiple_choice_question, from: :single_choice_question,
+    class_name: :multiple_choice_question) do
+end
+
 Fabricator(:boolean_question, from: :single_choice_question) do
   options { SingleChoiceQuestion::BOOLEAN_OPTIONS }
 end

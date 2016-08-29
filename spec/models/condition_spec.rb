@@ -84,8 +84,9 @@ RSpec.describe Condition, type: :model do
       comparators: comparators, source: question) }
     let(:comparators) { [2] } # Default - can be overriden in blocks
 
-    shared_examples 'check answer' do |answer, bool|
-      specify { expect(subject.check?(answer)).to be bool }
+    shared_examples 'check answer' do |answer_value, bool|
+      specify { expect(subject.check?(Fabricate(:answer,
+        value: answer_value))).to be bool }
     end
 
     shared_examples 'negates to' do |obverse_operator, obverse_comparators|
