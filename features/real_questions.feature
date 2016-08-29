@@ -25,8 +25,6 @@ Feature: Real questions
     And I proceed
     Then I should be about physical issues
     When I answer incontinence
-    And I answer bad back
-    And I answer bad hip
     And I proceed
     Then I should be asked about emotional issues
     When I answer dementia
@@ -39,11 +37,5 @@ Feature: Real questions
     And I proceed
     Then I should be asked what options I want to learn more about
     When I answer helping stay independent
-    And I proceed
-    Then I should be asked what my background is
-    When I answer Australian-Chinese
-    And I proceed
-    Then I should be asked what language I speak
-    When I answer ???
     And I proceed
     Then (...results, TBD)
