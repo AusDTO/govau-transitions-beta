@@ -1,6 +1,8 @@
 {
-  "name": "react-webpack-rails-tutorial",
-  "version": "0.0.1",
+  "name": "gov-au-transitions-beta",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BETA version of transitions aged care app",
   "engines": {
     "node": "5.10.0",
     "npm": "3.5.0"
