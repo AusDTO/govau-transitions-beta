@@ -1,32 +1,3 @@
-@import '~gov-au-ui-kit/assets/sass/vendor/normalize';
-@import '~gov-au-ui-kit/assets/sass/vendor/bourbon/bourbon';
-
-@import '~gov-au-ui-kit/assets/sass/grid-settings';
-@import '~gov-au-ui-kit/assets/sass/vendor/neat/neat';
-
-@import '~gov-au-ui-kit/assets/sass/variables';
-@import '~gov-au-ui-kit/assets/sass/colours';
-
-@import '~gov-au-ui-kit/assets/sass/accessibility';
-
-@import '~gov-au-ui-kit/assets/sass/icons';
-@import '~gov-au-ui-kit/assets/sass/typography';
-@import '~gov-au-ui-kit/assets/sass/grid-layout';
-@import '~gov-au-ui-kit/assets/sass/buttons';
-@import '~gov-au-ui-kit/assets/sass/links';
-@import '~gov-au-ui-kit/assets/sass/tables';
-@import '~gov-au-ui-kit/assets/sass/forms';
-@import '~gov-au-ui-kit/assets/sass/navigation';
-@import '~gov-au-ui-kit/assets/sass/lists';
-@import '~gov-au-ui-kit/assets/sass/accordions';
-@import '~gov-au-ui-kit/assets/sass/images';
-@import '~gov-au-ui-kit/assets/sass/video';
-// Error in this include from a image path ref
-//@import '~gov-au-ui-kit/assets/sass/page-header';
-@import '~gov-au-ui-kit/assets/sass/page-footer';
-
-@import '~gov-au-ui-kit/assets/sass/ie';
-@import '~gov-au-ui-kit/assets/sass/print';
-
-// Once above error has been resolved, we can remove above and include this.
-// @import "~gov-au-ui-kit/assets/sass/ui-kit";
+// Point to a URL until fallback image assets are available by other means.
+$gov-ui-kit-image-base-url: 'https://gov-au-ui-kit.apps.staging.digital.gov.au/latest/img/';
+@import "~gov-au-ui-kit";
