@@ -10,7 +10,7 @@ const config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/bundles/transition/startup/HelloWorldApp'
+    './app/bundles/transition/startup/App'
   ],
 
   output: {
@@ -44,7 +44,7 @@ const config = {
         loader: ExtractTextPlugin.extract('css!sass')
       },
       {
-        test: /\.jpe?g$|\.gif$|\.png$/i,
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
         loader: 'file-loader?name=/img/[name].[ext]'
       }
     ]
@@ -52,13 +52,11 @@ const config = {
   sassLoader: {
     outputStyle: devBuild ? 'nested' : 'compressed'
   },
-  devtool: 'source-map',
   plugins: [
     new ExtractTextPlugin('[name].css?[hash]-[chunkhash]-[contenthash]', {
       disable: false,
       allChunks: true
     }),
-    // new webpack.optimize.CommonsChunkPlugin('c', 'c.js'),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
