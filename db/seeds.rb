@@ -1,15 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+wizard = Wizard.create name: 'Helping older Australians'
 
-wizard = Wizard.find_or_create_by! name: 'Test wizard'
+SingleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'Are you looking for yourself or someone else?'
+  q.options = Option.quick_list 'Myself', 'Someone else'
+end
 
-q1 = SingleChoiceQuestion.find_or_create_by! wizard: wizard, prompt: 'Tea or coffee?'
-q1.update_attribute :options, [{ value: 'tea', label: 'Tea' }, {value: 'coffee', label: 'Coffee' }]
+SingleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'How old are you?'
+  q.options = Option.quick_list 'Under 50', '50 to 64', '65 to 79', '80 to 95',
+    '95 plus'
+end
 
-q2 = SingleChoiceQuestion.find_or_create_by! wizard: wizard, prompt: 'Milk?'
-q2.update_attribute :options, SingleChoiceQuestion::BOOLEAN_OPTIONS
+SingleChoiceQuestion.create wizard: wizard do |q|
+  q.prompt = 'Are you receiving a pension?'
+  q.options = Option.quick_list 'Age pension', 'Disability pension',
+    'Veteran/war widow or widower', 'Don\'t know', 'Other'
+end

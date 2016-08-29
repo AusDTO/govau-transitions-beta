@@ -17,34 +17,28 @@ Feature: Real questions
     Then I should be asked how old I am
     When I answer 72
     And I proceed
-    Then I should be asked which pension I am receiving
-    When I answer that I don't know
-    And I proceed
     Then I should be asked what best describes my current need
     When I answer that I'm thinking about the future
-    And I proceed
-    Then I should be asked what physical issues I have
-    When I answer incontinence
-    And I answer bad back
-    And I answer bad hip
-    And I proceed
-    Then I should be asked what mental or emotional issues I have
-    When I answer dementia
     And I proceed
     Then I should be asked what support I'm interested in
     When I answer staying at home
     And I proceed
-    Then I should be asked what I want to learn more about
-    When I answer helping stay independent
+    Then I should be about physical issues
+    When I answer incontinence
+    And I answer bad back
+    And I answer bad hip
     And I proceed
-    Then I should be asked where I am considering living
-    When I answer that I don't know
+    Then I should be asked about emotional issues
+    When I answer dementia
     And I proceed
     Then I should be asked what help is needed at home
     When I answer shopping
     And I proceed
     Then I should be asked where I live
     When I answer Morphettvale
+    And I proceed
+    Then I should be asked what options I want to learn more about
+    When I answer helping stay independent
     And I proceed
     Then I should be asked what my background is
     When I answer Australian-Chinese
