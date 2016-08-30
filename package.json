@@ -18,6 +18,7 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "rails-server": "foreman start -f Procfile.dev",
-    "posttest": "cd client && npm test"
+    "posttest": "cd client && npm test",
+    "build:production": "cd client && npm run build:production"
   }
 }
