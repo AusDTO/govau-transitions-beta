@@ -1,12 +1,12 @@
 class SingleChoiceQuestion < Question
+  include Choosable
 
   # Convenience for creating a boolean question, e.g.:
-  # SingleChoiceQuestion.new prompt: 'Do you like...mantronix?'
-  BOOLEAN_OPTIONS = %w(Yes No).collect do |bool|
-    { value: bool.downcase, label: bool }
-  end
+  # SingleChoiceQuestion.new options: SingleChoiceQuestion::BOOLEAN_OPTIONS,
+  #   prompt: 'Do you like...mantronix?'
+  BOOLEAN_OPTIONS = Option.quick_list 'Yes', 'No'
 
-  store_attributes :meta do
-    options Array[Option]
+  def multiple_choice?
+    false
   end
 end
