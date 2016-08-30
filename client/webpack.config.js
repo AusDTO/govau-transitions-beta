@@ -10,7 +10,7 @@ const config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/bundles/transition/startup/App'
+    './app/startup/App'
   ],
 
   output: {
