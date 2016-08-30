@@ -2,7 +2,7 @@ import React from 'react'
 import ReactOnRails from 'react-on-rails'
 import { Provider } from 'react-redux'
 import createStore from '../store/appStore'
-import Landing from '../containers/Landing'
+import LandingConnector from '../containers/LandingConnector'
 
 import 'assets/stylesheets/main.scss'
 
@@ -15,7 +15,7 @@ const App = (props, _railsContext) => {
   const store = createStore(props)
   const reactComponent = (
     <Provider store={store}>
-      <Landing />
+      <LandingConnector />
     </Provider>
   )
   return reactComponent
