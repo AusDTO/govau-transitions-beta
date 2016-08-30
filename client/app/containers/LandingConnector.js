@@ -1,5 +1,5 @@
 import React from 'react'
-import LandingWidget from '../components/LandingWidget'
+import Landing from '../components/Landing'
 import { connect } from 'react-redux'
 
 const mapStateToProps = ({ landing }) => {
@@ -10,9 +10,9 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-const Landing = connect(
+const LandingConnector = connect(
   mapStateToProps,
   mapDispatchToProps
-)(LandingWidget)
+)(Landing)
 
-export default Landing
+export default LandingConnector
