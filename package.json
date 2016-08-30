@@ -19,12 +19,5 @@
     "postinstall": "cd client && npm install",
     "rails-server": "foreman start -f Procfile.dev",
     "posttest": "cd client && npm test"
-  },
-  "devDependencies": {
-    "ava": "^0.16.0",
-    "enzyme": "^2.4.1",
-    "react": "^15.3.1",
-    "react-addons-test-utils": "^15.3.1",
-    "react-dom": "^15.3.1"
   }
 }
