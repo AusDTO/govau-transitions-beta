@@ -1,8 +1,8 @@
 import React from 'react';
 
-const LandingWidget = () => (
+const LandingWidget = ({ name }) => (
   <div className="container">
-    <h2>Welcome to Transitions Beta!</h2>
+    <h2>Welcome to {name} Beta!</h2>
   </div>
 )
 
