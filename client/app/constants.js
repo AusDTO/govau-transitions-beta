@@ -1,0 +1,7 @@
+export default {
+  MOVE_NEXT: 'MOVE_NEXT',
+  MOVE_BACK: 'MOVE_BACK',
+  MOVE_TO: 'MOVE_TO',
+  ON_SELECT: 'ON_SELECT',
+  RESULT_CHECK: 'RESULT_CHECK'
+}

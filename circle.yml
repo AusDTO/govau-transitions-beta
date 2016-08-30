@@ -1,0 +1,12 @@
+machine:
+  ruby:
+    version: 2.3.1
+  node:
+    version: 5.10.0
+
+test:
+  override:
+    - npm run build:production
+    - npm test
+    - bundle exec rspec spec --format progress
+    - RAILS_ENV="test" RACK_ENV="test" bundle exec spinach

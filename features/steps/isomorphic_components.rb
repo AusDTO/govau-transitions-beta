@@ -8,14 +8,11 @@ class Spinach::Features::IsomorphicComponents < Spinach::FeatureSteps
   end
 
   step 'I browse to the Hello page' do
-    visit '/hello_world'
+    visit '/'
   end
 
-  step 'I should see a greeting' do
-    expect(page).to have_content 'Hello,'
+  step 'I should see a welcome message' do
+    expect(page).to have_content 'Welcome to Transitions Beta!'
   end
 
-  step 'it should greet me as Stranger' do
-    expect(page).to have_content 'Stranger'
-  end
 end
