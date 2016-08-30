@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import createStore from '../store/appStore'
 import HelloWorld from '../containers/HelloWorld'
 
-import 'assets/styles/main.scss'
+import 'assets/stylesheets/main.scss'
 
 // See documentation for https://github.com/reactjs/react-redux.
 // This is how you get props from the Rails view into the redux store.
