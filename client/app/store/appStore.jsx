@@ -7,7 +7,6 @@ const devTools = typeof window !== 'undefined' && window.devToolsExtension && wi
 export default props => {
   // Redux expects to initialize the store using an Object, not an Immutable.Map
   const initialState = props
-  console.log(reducers)
   const reducer = combineReducers(reducers)
   const composedStore = compose(
     applyMiddleware(thunk),
