@@ -6,7 +6,7 @@ machine:
 
 test:
   override:
-    - npm run build:production
+    - cd client && npm run build:production
     - npm test
     - bundle exec rspec spec --format progress
     - RAILS_ENV="test" RACK_ENV="test" bundle exec spinach
