@@ -1,8 +1,4 @@
-// import actionTypes from '../constants'
-const initialState = {
-  name: ''
-}
-export default function landing (state = initialState, action) {
+export default function landing (state = { name: '' }, action) {
   const { type } = action
 
   switch (type) {
