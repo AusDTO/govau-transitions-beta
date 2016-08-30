@@ -1,0 +1,2 @@
+class LocationQuestion < Question
+end
