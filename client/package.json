@@ -10,7 +10,8 @@
   "scripts": {
     "build:test": "webpack --config webpack.config.js",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
-    "build:development": "webpack -w --config webpack.config.js"
+    "build:development": "webpack -w --config webpack.config.js",
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -52,10 +53,20 @@
     "webpack": "^1.13.2"
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-register": "^6.14.0",
     "css-loader": "^0.24.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "jsdom": "^9.4.2",
     "node-sass": "^3.8.0",
+    "postcss-loader": "^0.11.0",
     "sass-loader": "^4.0.0"
+  },
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "./__tests__/helpers/setup-test-env.js"
+    ]
   }
 }

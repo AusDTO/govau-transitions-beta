@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 const devBuild = process.env.NODE_ENV !== 'production'
 const nodeEnv = devBuild ? 'development' : 'production'
@@ -41,7 +42,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass')
+        loader: ExtractTextPlugin.extract('css!sass!postcss')
       },
       {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
@@ -52,6 +53,7 @@ const config = {
   sassLoader: {
     outputStyle: devBuild ? 'nested' : 'compressed'
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions', 'ie 9-10'] }) ],
   plugins: [
     new ExtractTextPlugin('[name].css?[hash]-[chunkhash]-[contenthash]', {
       disable: false,
@@ -67,12 +69,11 @@ const config = {
 
 module.exports = config
 
+console.log('NODE_ENV: ' + process.env.NODE_ENV);
 if (devBuild) {
-  console.log('Webpack dev build for Rails') // eslint-disable-line no-console
   module.exports.devtool = 'eval-source-map'
 } else {
   config.plugins.push(
     new webpack.optimize.DedupePlugin()
   )
-  console.log('Webpack production build for Rails') // eslint-disable-line no-console
 }
