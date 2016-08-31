@@ -47,4 +47,7 @@ node_modules
 # Generated js bundles
 /app/assets/webpack/*
 
+# client based assets 
 *.map
+.nyc_output
+coverage/
