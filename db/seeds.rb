@@ -1,18 +1,36 @@
 wizard = Wizard.create name: 'Helping older Australians'
 
-SingleChoiceQuestion.create wizard: wizard do |q|
+person_question = SingleChoiceQuestion.create wizard: wizard do |q|
   q.prompt = 'Are you looking for yourself or someone else?'
-  q.options = Option.quick_list 'Myself', 'Someone else'
+  q.options = [{ label: 'Myself', value: 'second'},
+    { label: 'Someone else', value: 'third'}]
 end
 
+InflectiveInterpolation.create wizard: wizard do |q|
+  q.source = person_question
+  q.name = 'subject'
+  q.values = { second: 'you', third: 'they' }
+end
+
+InflectiveInterpolation.create wizard: wizard do |q|
+  q.source = person_question
+  q.name = 'possessive'
+  q.values = { second: 'you', third: 'they' }
+end
+
+
+
+
+#attribute :dimensions, Hash[Symbol => Float]
+
 SingleChoiceQuestion.create wizard: wizard do |q|
-  q.prompt = 'How old are you?'
+  q.prompt = 'How old are %{person:subject}?'
   q.options = Option.quick_list 'Under 50', '50 to 64', '65 to 79', '80 to 95',
     '95 plus'
 end
 
 SingleChoiceQuestion.create wizard: wizard do |q|
-  q.prompt = 'Which best describes your current need?'
+  q.prompt = 'Which best describes %{person:possessive} current need?'
   q.options = Option.quick_list 'I\'m thinking about the future',
     'I\'m starting not to manage', 'I know that I need some help',
     'I\'m in a crisis'
@@ -26,7 +44,7 @@ MultipleChoiceQuestion.create wizard: wizard do |q|
 end
 
 MultipleChoiceQuestion.create wizard: wizard do |q|
-  q.prompt = 'Would you like support information for any of these health issues?'
+  q.prompt = 'Are you concerned about any of these health issues?'
   q.options = Option.quick_list 'Arthritis', 'Dementia', 'Diabetes',
     'Emphysema', 'Incontinence', 'None of the above'
 end
