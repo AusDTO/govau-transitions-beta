@@ -1,6 +1,6 @@
-import test from 'ava';
+import test from 'ava'
 import React from 'react'
-import { shallow, render } from 'enzyme';
+import { shallow, render } from 'enzyme'
 
 import Landing from '../../app/components/Landing'
 
