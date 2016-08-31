@@ -13,8 +13,8 @@
     "build:development": "webpack -w --config webpack.config.js",
     "test": "NODE_ENV=test ava",
     "test:coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=html ava",
-    "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100"
-
+    "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "lint": "eslint app __tests__"
   },
   "repository": {
     "type": "git",
