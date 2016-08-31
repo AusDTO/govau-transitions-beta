@@ -1,5 +1,8 @@
 {
-  "extends": "eslint-config-rackt",
+  "extends": [
+    "eslint-config-rackt",
+    "plugin:ava/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
