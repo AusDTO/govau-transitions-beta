@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # FIXME will need to integrate this with react form
+  #protect_from_forgery with: :exception
 
   def current_user
     @current_user ||= find_or_create_session_user
