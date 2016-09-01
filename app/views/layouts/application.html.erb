@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>.gov.au Transitions Beta</title>
+    <title>GOV.AU Transitions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
+    <%= favicon_link_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <%= render partial: "partials/header" %>
-    <section class="wrapper">
-      <%= yield %>
-    </section>
+    <main role="main">
+      <article id="content" class="content-main">
+        <%= yield %>
+      </article>
+    </main>
+    <%= render partial: "partials/footer" %>
   </body>
 </html>

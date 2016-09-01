@@ -6,6 +6,14 @@ import LandingConnector from '../containers/LandingConnector'
 
 import 'assets/stylesheets/main.scss'
 
+if (typeof window !== 'undefined') {
+  require('webfontloader').load({
+    google: {
+      families: ['Open+Sans:400italic,600,700,400:latin,latin-ext']
+    }
+  })
+}
+
 // See documentation for https://github.com/reactjs/react-redux.
 // This is how you get props from the Rails view into the redux store.
 // This code here binds your smart component to the redux store.
