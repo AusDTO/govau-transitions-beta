@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
 
-const Question = ({ id, prompt, meta = { options: [] }, legend }) => (
+const Question = ({ id, prompt, meta = { options: [] } }) => (
   <section className="content-main">
     <form className="form"
         method="post"
         action={'/questions/' + id + '/answers'}>
         <fieldset>
           <legend>{prompt}</legend>
-          {meta.options.map(({ label, value }, idx) => (
-            <span key={value + idx}>
+          {meta.options.map(({ label, value }, i) => (
+            <span key={value + i}>
               <input type="radio" name="answer[options]" id={'answer_' + value} value={value} />
               <label htmlFor={'answer_' + value}>{label}</label>
             </span>
