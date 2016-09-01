@@ -1,3 +1,9 @@
+<!--[if lt IE 9]>
+  <p class="browserupgrade">You are using an <strong>outdated</strong>
+  browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
+  to improve your experience.</p>
+<![endif]-->
+
 <div class="skip-to">
 <!-- <a href="#content">Skip to main content</a>
 <a href="#nav">Skip to section navigation</a> -->
@@ -6,17 +12,17 @@
 <header role="banner">
   <section class="prerelease-govau--header">
     <div class="wrapper">
-      <div class="govau--logo">
-        <!-- <img src="{% asset_path logo-govau-full-2x_alpha.png %}" alt="gov.au crest logo" width="270"> -->
 
+      <a class="govau--logo" href="http://www.gov.au">
+        <%= image_tag("/assets/icons/logo-govau-full-2x.png", width: "270") %>
         <div class="brandbar default">
           <div class="b1"></div>
           <div class="b2"></div>
         </div>
-      </div>
+      </a>
 
       <div class="feedback" tabindex="1">
-        <a href="" class="button--feedback">Give feedback</a>
+        <a href="" class="button--feedback" role="button">Give feedback</a>
       </div>
     </div>
 

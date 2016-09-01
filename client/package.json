@@ -33,13 +33,15 @@
   ],
   "dependencies": {
     "es5-shim": "^4.5.7",
+    "font-awesome": "^4.6.3",
     "gov-au-ui-kit": "git+https://github.com/nathf/gov-au-ui-kit.git#feature/node-install-issues",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-on-rails": "6.0.5",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "webfontloader": "^1.6.26"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -71,6 +73,7 @@
     "react-addons-test-utils": "^15.3.1",
     "sass-loader": "^4.0.0",
     "sinon": "^1.17.5",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.2"
   },
   "ava": {
