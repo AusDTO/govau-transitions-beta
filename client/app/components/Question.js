@@ -22,9 +22,12 @@ const Question = ({ id, prompt, meta = { options: [] } }) => (
 Question.PropTypes = {
   id: PropTypes.number.isRequired,
   prompt: PropTypes.string.isRequired,
-  meta: PropTypes.arrayOf(PropTypes.shape({
-    options: PropTypes.object.isRequired
-  }))
+  meta: PropTypes.shape({
+    options: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    })).isRequired
+  })
 }
 
 export default Question
