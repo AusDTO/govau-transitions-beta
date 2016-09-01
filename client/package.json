@@ -38,7 +38,8 @@
     "react-on-rails": "6.0.5",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "webfontloader": "^1.6.26"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
