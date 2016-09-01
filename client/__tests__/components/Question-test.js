@@ -21,7 +21,7 @@ const questionData = {
 const wrapper = shallow(<Question {...questionData} />)
 
 test('will have a question title', t => {
-  const heading = wrapper.find('h3')
+  const heading = wrapper.find('legend')
   t.truthy(heading.length)
   t.is(heading.text(), 'Was Jackie Robinson the greatest baseball player?')
 })
@@ -43,7 +43,6 @@ test('will contain form container elements', t => {
   t.true(form.is('.form'))
   t.truthy(form.length)
   t.truthy(wrapper.find('fieldset').length)
-  t.truthy(wrapper.find('legend').length)
 })
 
 /**
