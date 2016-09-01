@@ -14,7 +14,6 @@
     "test": "NODE_ENV=test ava",
     "test:coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=html ava",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100"
-
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,7 @@
   ],
   "dependencies": {
     "es5-shim": "^4.5.7",
+    "font-awesome": "^4.6.3",
     "gov-au-ui-kit": "git+https://github.com/nathf/gov-au-ui-kit.git#feature/node-install-issues",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
@@ -65,6 +65,7 @@
     "postcss-loader": "^0.11.0",
     "react-addons-test-utils": "^15.3.1",
     "sass-loader": "^4.0.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.2"
   },
   "ava": {

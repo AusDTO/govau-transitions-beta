@@ -45,8 +45,12 @@ const config = {
         loader: ExtractTextPlugin.extract('css!sass!postcss')
       },
       {
-        test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
-        loader: 'file-loader?name=/img/[name].[ext]'
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
       }
     ]
   },
@@ -55,7 +59,7 @@ const config = {
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions', 'ie 9-10'] }) ],
   plugins: [
-    new ExtractTextPlugin('[name].css?[hash]-[chunkhash]-[contenthash]', {
+    new ExtractTextPlugin('[name].css?[contenthash]', {
       disable: false,
       allChunks: true
     }),
