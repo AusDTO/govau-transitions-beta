@@ -73,7 +73,7 @@ const config = {
 
 module.exports = config
 
-console.log('NODE_ENV: ' + process.env.NODE_ENV);
+console.log('NODE_ENV: ' + nodeEnv);
 if (devBuild) {
   module.exports.devtool = 'eval-source-map'
 } else {
