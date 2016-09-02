@@ -28,4 +28,10 @@ Question.propTypes = {
   })).isRequired
 }
 
+Question.defaultProps = {
+  id: 0,
+  prompt: '',
+  options: []
+}
+
 export default Question

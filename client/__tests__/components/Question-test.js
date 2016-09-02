@@ -43,6 +43,15 @@ test('will contain form container elements', t => {
   t.truthy(wrapper.find('fieldset').length)
 })
 
+test('will no props provided', t => {
+  const wrapper = shallow(<Question />)
+  const heading = wrapper.find('legend')
+  const inputs = wrapper.find('input')
+  t.truthy(heading.length)
+  t.is(heading.text(), '')
+  t.falsy(inputs.length)
+})
+
 /**
  * Skipping this suite until we integrate the API.
  */
