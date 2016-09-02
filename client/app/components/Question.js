@@ -19,7 +19,7 @@ const Question = ({ id, prompt, meta = { options: [] } }) => (
   </section>
 )
 
-Question.PropTypes = {
+Question.propTypes = {
   id: PropTypes.number.isRequired,
   prompt: PropTypes.string.isRequired,
   meta: PropTypes.shape({
