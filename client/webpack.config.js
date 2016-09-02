@@ -75,7 +75,7 @@ module.exports = config
 
 console.log('NODE_ENV: ' + nodeEnv);
 if (devBuild) {
-  module.exports.devtool = 'eval-source-map'
+  module.exports.devtool = 'source-map'
 } else {
   config.plugins.push(
     new webpack.optimize.DedupePlugin()
