@@ -23,12 +23,12 @@ const config = {
     root: [
       path.resolve('./app')
     ],
-    extensions: ['', '.js', '.jsx'],
+    extensions: [ '', '.js', '.jsx' ],
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom')
     },
-    modulesDirectories: ['node_modules']
+    modulesDirectories: [ 'node_modules' ]
   },
   module: {
     loaders: [
@@ -46,18 +46,18 @@ const config = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader"
+        loader: 'file-loader'
       }
     ]
   },
   sassLoader: {
     outputStyle: devBuild ? 'nested' : 'compressed'
   },
-  postcss: [ autoprefixer({ browsers: ['last 2 versions', 'ie 9-10'] }) ],
+  postcss: [ autoprefixer({ browsers: [ 'last 2 versions', 'ie 9-10' ] }) ],
   plugins: [
     new ExtractTextPlugin('[name].css?[contenthash]', {
       disable: false,
@@ -73,11 +73,19 @@ const config = {
 
 module.exports = config
 
-console.log('NODE_ENV: ' + nodeEnv);
+console.log('NODE_ENV: ' + nodeEnv) // eslint-disable-line no-console
 if (devBuild) {
   module.exports.devtool = 'eval-source-map'
 } else {
+  const ClosureCompilerPlugin = require('webpack-closure-compiler')
   config.plugins.push(
-    new webpack.optimize.DedupePlugin()
+    new webpack.optimize.DedupePlugin(),
+    new ClosureCompilerPlugin({
+      compiler: {
+        language_in: 'ECMASCRIPT6',
+        language_out: 'ECMASCRIPT5',
+        compilation_level: 'SIMPLE'
+      }
+    })
   )
 }
