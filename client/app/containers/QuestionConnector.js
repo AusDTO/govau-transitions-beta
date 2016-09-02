@@ -1,19 +1,29 @@
 import Question from '../components/Question'
 import { connect } from 'react-redux'
 
-const mapStateToProps = ({ currentQuestion = {} }) => {
+export const mapStateToProps = ({ currentQuestion = {} }) => {
+  const {
+    id = 0,
+    prompt = '',
+    meta: {
+      options = []
+    } = {}
+  } = currentQuestion
+
   return {
-    ...currentQuestion
+    id,
+    prompt,
+    options
   }
 }
 
-const mapDispatchToProps = () => {
+export const mapDispatchToProps = () => {
   return {}
 }
 
-const LandingConnector = connect(
+const QuestionConnector = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Question)
 
-export default LandingConnector
+export default QuestionConnector
