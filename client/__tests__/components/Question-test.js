@@ -9,12 +9,10 @@ const onSubmit = sinon.spy()
 const questionData = {
   id: 1,
   prompt: 'Was Jackie Robinson the greatest baseball player?',
-  meta: {
-    options: [
-      { label: 'Yes', value: 'yes' },
-      { label: 'No', value: 'no' }
-    ]
-  },
+  options: [
+    { label: 'Yes', value: 'yes' },
+    { label: 'No', value: 'no' }
+  ],
   onSubmit: onSubmit
 }
 
