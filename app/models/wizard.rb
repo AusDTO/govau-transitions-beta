@@ -14,4 +14,3 @@ class Wizard < ApplicationRecord
     end
   end
 end
-``

@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160826022117) do
     t.index ["wizard_id"], name: "index_results_on_wizard_id", using: :btree
   end
 
-  create_table "session_users", force: :cascade do |t|
+  create_table "answer_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

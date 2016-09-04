@@ -2,19 +2,34 @@ class ApplicationController < ActionController::Base
   # FIXME will need to integrate this with react form
   #protect_from_forgery with: :exception
 
-  def current_user
-    @current_user ||= find_or_create_session_user
+  def answer_session(for_wizard)
+    @answer_sessions ||= {}
+    @answer_sessions[for_wizard] ||= find_or_create_answer_session(for_wizard)
   end
 
   private
 
-  def find_or_create_session_user
-    if session[:session_user_id]
-      SessionUser.find session[:session_user_id]
-    else
-      user = SessionUser.create
-      session[:session_user_id] = user.id
-      user
+  def find_or_create_answer_session(wizard)
+    wizard_key = :"wizard_#{wizard.id}"
+    token = session[wizard_key]
+
+    if token.present?
+      answer_session = AnswerSession.find_by_token token
+
+      if answer_session.present?
+        if answer_session.wizard != wizard
+          logger.warn "Session token #{token} did not match wizard #{wizard}"
+          session[wizard_key] = nil
+          answer_session = nil
+        end
+      end
     end
+
+    unless answer_session.present?
+      answer_session = AnswerSession.create wizard: wizard
+      session[wizard_key] = answer_session.token
+    end
+
+    answer_session
   end
 end
