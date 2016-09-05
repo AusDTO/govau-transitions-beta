@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def answer_session_for(wizard)
     @answer_sessions ||= {}
-    @answer_sessions[for_wizard] ||= find_or_create_answer_session(for_wizard)
+    @answer_sessions[wizard] ||= find_or_create_answer_session(wizard)
   end
 
   private
