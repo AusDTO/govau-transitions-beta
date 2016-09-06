@@ -12,7 +12,7 @@ const props = {
   ]
 }
 
-test('', t => {
+test('should render with a div wrapper', t => {
   const wrapper = shallow(<SingleChoiceQuestion {...props} />)
   t.is(wrapper.type(), 'div')
 })
