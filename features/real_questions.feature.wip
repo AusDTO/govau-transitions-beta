@@ -22,30 +22,37 @@ Feature: Real questions
     And I proceed
     Then I should be asked what support I'm interested in
     When I answer staying at home
+    And I answer health conditions
     And I proceed
     Then I should be asked about physical issues
     When I answer incontinence
+    And I answer dementia
     And I proceed
     Then I should be asked about emotional issues
-    When I answer dementia
+    When I answer anxiety
     And I proceed
     Then I should be asked what help is needed at home
-    When I answer shopping
     And I answer personal hygiene
     And I proceed
     Then I should be asked where I live
     When I answer Morphettvale
     And I proceed
-    Then I should be asked what options I want to learn more about
-    When I answer helping stay independent
-    And I proceed
-    Then (...results, TBD)
+    Then I should see the results page
+    And it should have 
 
-  Scenario: Michael
-    Given I am Michael
-    When I browse to the Help For Older People wizard page
-    And I begin the wizard
-    Then I should be asked whether I am looking for myself or someone else
-    When I answer someone else
-    And I proceed
-    Then I should be asked how old they are
+    And it should have three possible next steps
+    And I should see a block for getting in-home help
+    And the getting in-home help block should have brief info on My Aged Care
+    And the getting in-home help block should have the My Aged Care phone number
+    And the getting in-home help block should have a link for being assessed
+    And I should see a block for types of in-home help
+    And the types of in-home help block should have some basic info
+    And the types of in-home help block should have a comparison link
+    And I should see a block for fee estimation
+    And the fee estimation block should have some basic info
+    And the fee estimation block should link to My Aged Care estimation form
+    And the fee estimation block should have a link to choosing a care provider
+    And I should see a local services block
+    And the local services block should link to My Aged Care providers
+    And I should see a further information block
+    And the further information block should link to SA Health service providers
