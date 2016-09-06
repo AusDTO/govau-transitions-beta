@@ -75,7 +75,7 @@ module.exports = config
 
 console.log('NODE_ENV: ' + nodeEnv) // eslint-disable-line no-console
 if (devBuild) {
-  module.exports.devtool = 'eval-source-map'
+  module.exports.devtool = 'source-map'
 } else {
   const ClosureCompilerPlugin = require('webpack-closure-compiler')
   config.plugins.push(

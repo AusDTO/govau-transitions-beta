@@ -6,5 +6,5 @@ test('should create an action to go next', t => {
   const expectedAction = {
     type: actionTypes.MOVE_NEXT
   }
-  t.deepEqual(actions.next(), expectedAction)
+  t.deepEqual(actions.moveNext(), expectedAction)
 })

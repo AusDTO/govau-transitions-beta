@@ -1,4 +1,4 @@
-export default function landing(state = { name: '' }, action) {
+export default function question(state = {}, action) {
   const { type } = action
 
   switch (type) {
