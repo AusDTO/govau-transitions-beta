@@ -7,10 +7,4 @@ class Wizard < ApplicationRecord
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
-
-  def results_for(answers)
-    results.select do |result|
-      result.visible_given_answers? answers
-    end
-  end
 end

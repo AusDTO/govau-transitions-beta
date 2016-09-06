@@ -25,6 +25,12 @@ class AnswerSession < ApplicationRecord
     visible_questions[idx - 1] if idx > 0
   end
 
+  def results
+    wizard.results.select do |result|
+      result.visible_given_answers? answers
+    end
+  end
+
   def visible_questions
     @visible_questions ||= select_visible_questions
   end
