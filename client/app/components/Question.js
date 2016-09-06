@@ -1,31 +1,50 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
+import SingleChoiceQuestion from './SingleChoiceQuestion'
 
-const Question = ({ id, prompt, options }) => (
-  <section className="content-main">
-    <form className="form"
-        method="post"
-        action={'/questions/' + id + '/answers'}>
-        <fieldset>
-          <legend>{prompt}</legend>
-          {options.map(({ label, value }, i) => (
-            <span key={value + i}>
-              <input type="radio" name="answer[options]" id={'answer_' + value} value={value} />
-              <label htmlFor={'answer_' + value}>{label}</label>
-            </span>
-          ))}
-        </fieldset>
-        <button type="submit">Next <i className="fa fa-chevron-right" aria-hidden="true"></i></button>
-    </form>
-  </section>
-)
+class Question extends Component {
+
+  elementMap = {
+    'single': SingleChoiceQuestion
+  }
+
+  constructor(props) {
+    super(props)
+    this.generateQuestionElement = this.generateQuestionElement.bind(this)
+  }
+
+  generateQuestionElement(type = 'single') {
+    const { options } = this.props
+    return React.createElement(this.elementMap[type], { options })
+  }
+
+  render() {
+    const { id, prompt, legend, type } = this.props
+    return (
+      <section className="content-main">
+        <div className="heading">
+          <a href="#" className="back fa fa-chevron-left">Back</a>
+          <h3>{prompt}</h3>
+        </div>
+        <form className="form"
+            method="post"
+            action={`/questions/${id}/answers`}>
+            <fieldset>
+              <legend>{legend}</legend>
+              {this.generateQuestionElement(type)}
+            </fieldset>
+            <button type="submit">Next <i className="fa fa-chevron-right" aria-hidden="true"></i></button>
+        </form>
+      </section>
+    )
+  }
+}
 
 Question.propTypes = {
   id: PropTypes.number.isRequired,
   prompt: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  })).isRequired
+  options: PropTypes.array.isRequired,
+  legend: PropTypes.string,
+  type: PropTypes.string
 }
 
 Question.defaultProps = {
