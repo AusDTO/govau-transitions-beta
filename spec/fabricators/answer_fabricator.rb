@@ -1,5 +1,5 @@
 Fabricator(:answer) do
-  owner { Fabricate(:session_user) }
+  owner { Fabricate(:answer_session) }
   question { Fabricate(:single_choice_question) }
   value { 'foo' }
 end

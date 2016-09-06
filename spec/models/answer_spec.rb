@@ -8,7 +8,7 @@ RSpec.describe Answer, type: :model do
   it { is_expected.to validate_presence_of :value }
 
   describe 'Uniqueness per question' do
-    let!(:user) { Fabricate(:session_user) }
+    let!(:user) { Fabricate(:answer_session) }
     let(:first_answer) { Fabricate(:answer, owner: user, question: question) }
 
     before do

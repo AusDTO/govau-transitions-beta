@@ -28,7 +28,7 @@ group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'poltergeist', '~> 1.10'
   gem 'database_cleaner', '~> 1.5'
-  gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  # gem 'phantomjs', :require => 'phantomjs/poltergeist'
   gem 'fabrication', '~> 2.15'
   gem 'site_prism', '~> 2.9'
   gem 'shoulda-matchers', '~> 3.1'

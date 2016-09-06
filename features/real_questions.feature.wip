@@ -40,3 +40,12 @@ Feature: Real questions
     When I answer helping stay independent
     And I proceed
     Then (...results, TBD)
+
+  Scenario: Michael
+    Given I am Michael
+    When I browse to the Help For Older People wizard page
+    And I begin the wizard
+    Then I should be asked whether I am looking for myself or someone else
+    When I answer someone else
+    And I proceed
+    Then I should be asked how old they are

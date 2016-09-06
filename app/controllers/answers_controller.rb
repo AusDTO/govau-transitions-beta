@@ -2,9 +2,10 @@ class AnswersController < ApplicationController
   before_action :set_question
 
   def create
-    answer = current_user.answers.find_or_create_by(question_id: @question.id)
+    answer_session = answer_session_for @question.wizard
+    answer = answer_session.answers.find_or_create_by(question_id: @question.id)
     answer.update_attribute :value, params[:answer][:options]
-    next_question = @question.next_question current_user.answers
+    next_question = answer_session.question_after @question
 
     if next_question.present?
       redirect_to question_path id: next_question.id

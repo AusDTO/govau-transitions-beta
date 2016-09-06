@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826022117) do
+ActiveRecord::Schema.define(version: 20160831043743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_sessions", force: :cascade do |t|
+    t.integer  "wizard_id"
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wizard_id"], name: "index_answer_sessions_on_wizard_id", using: :btree
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string   "owner_type"
@@ -38,6 +46,17 @@ ActiveRecord::Schema.define(version: 20160826022117) do
     t.index ["source_id"], name: "index_conditions_on_source_id", using: :btree
   end
 
+  create_table "interpolations", force: :cascade do |t|
+    t.integer  "wizard_id"
+    t.integer  "source_id"
+    t.string   "name"
+    t.jsonb    "meta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_id"], name: "index_interpolations_on_source_id", using: :btree
+    t.index ["wizard_id"], name: "index_interpolations_on_wizard_id", using: :btree
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer  "wizard_id"
     t.string   "type"
@@ -57,11 +76,6 @@ ActiveRecord::Schema.define(version: 20160826022117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["wizard_id"], name: "index_results_on_wizard_id", using: :btree
-  end
-
-  create_table "session_users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "wizards", force: :cascade do |t|

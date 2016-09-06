@@ -13,7 +13,7 @@ describe Conditional do
   let(:question_one) { Fabricate(:boolean_question) }
   let(:question_two) { Fabricate(:boolean_question) }
   subject { DummyConditional.create }
-  let(:user) { Fabricate(:session_user) }
+  let(:user) { Fabricate(:answer_session) }
   let(:answer_one) { Fabricate(:answer, question: question_one,
     value: value_one, owner: user) }
   let(:answer_two) { Fabricate(:answer, question: question_two,

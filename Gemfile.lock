@@ -125,7 +125,6 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pg (0.19.0.pre20160409114042)
-    phantomjs (2.1.1.0)
     pkg-config (1.1.7)
     poltergeist (1.10.0)
       capybara (~> 2.1)
@@ -265,7 +264,6 @@ DEPENDENCIES
   listen
   mini_racer
   pg (>= 0.19.0.beta)
-  phantomjs
   poltergeist (~> 1.10)
   rails (>= 5.0.0.beta4, < 5.1)
   react_on_rails (~> 6)
