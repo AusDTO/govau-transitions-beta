@@ -37,10 +37,13 @@ Feature: Real questions
     Then I should be asked where I live
     When I answer Morphettvale
     And I proceed
-    Then I should see the results page
-    And it should have 
-
-    And it should have three possible next steps
+    Then I should see the results overview page
+    And it should have two result tiles
+    When I click the help to stay at home tile
+    Then I should arrive at the help to stay at home result page
+    And it should have general information about help to stay at home
+    And there should be a menu to navigate to other results
+    And I should see three possible next steps
     And I should see a block for getting in-home help
     And the getting in-home help block should have brief info on My Aged Care
     And the getting in-home help block should have the My Aged Care phone number
@@ -56,3 +59,13 @@ Feature: Real questions
     And the local services block should link to My Aged Care providers
     And I should see a further information block
     And the further information block should link to SA Health service providers
+    When I click in the result nav menu on health and wellbeing
+    Then I should arrive at the health and wellbeing result page
+    And it should have general information about health and wellbeing
+    And I should see four possible next steps
+    And I should see a block for dementia hotline
+    And I should see a block for support with continence at a state level
+    And I should see a block for support with continence at a national level
+    And I should see a block for incontinence advice
+    And I should see a local services block
+    And I should see a further information block
