@@ -4,6 +4,7 @@ import { shallow } from 'enzyme'
 import sinon from 'sinon'
 
 import Question from '../../app/components/Question'
+import SingleChoiceQuestion from '../../app/components/SingleChoiceQuestion'
 
 const onSubmit = sinon.spy()
 const questionData = {
@@ -19,19 +20,24 @@ const questionData = {
 const wrapper = shallow(<Question {...questionData} />)
 
 test('will have a question title', t => {
-  const heading = wrapper.find('legend')
+  const heading = wrapper.find('h3')
+  const headingWrapper = wrapper.find('.heading')
+  t.truthy(headingWrapper.length)
   t.truthy(heading.length)
   t.is(heading.text(), 'Was Jackie Robinson the greatest baseball player?')
 })
 
-test('will display radio buttons', t => {
-  t.true(wrapper.contains(<input type="radio" name="answer[options]" id="answer_yes" value="yes" />))
-  t.true(wrapper.contains(<input type="radio" name="answer[options]" id="answer_no" value="no" />))
+test('will have a back button', t => {
+  const backButton = wrapper.find('.back')
+  t.truthy(backButton.length)
+})
+
+test('will display a SingleChoiceQuestion element', t => {
+  t.is(wrapper.find(SingleChoiceQuestion).length, 1)
 })
 
 test('will display a submit button', t => {
   const button = wrapper.find('button[type="submit"]')
-
   t.truthy(button.length)
   t.true(wrapper.contains(<button type="submit">Next <i className="fa fa-chevron-right" aria-hidden="true"></i></button>))
 })
@@ -45,11 +51,9 @@ test('will contain form container elements', t => {
 
 test('with no props provided', t => {
   const wrapper = shallow(<Question />)
-  const heading = wrapper.find('legend')
-  const inputs = wrapper.find('input')
+  const heading = wrapper.find('h3')
   t.truthy(heading.length)
   t.is(heading.text(), '')
-  t.falsy(inputs.length)
 })
 
 /**

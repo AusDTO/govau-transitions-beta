@@ -2,7 +2,7 @@ module Pages
   class Question < SitePrism::Page
     set_url "/questions{/id}"
 
-    element :prompt, 'legend'
+    element :prompt, 'h3'
     element :next_button, 'button[type=submit]'
 
     #TODO smarten this up as you add more question types
