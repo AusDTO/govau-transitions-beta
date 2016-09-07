@@ -13,7 +13,7 @@ class Question extends Component {
   }
 
   render() {
-    const { prompt, legend, type, form = {} } = this.props
+    const { prompt, legend, type, form } = this.props
     return (
       <section>
         <div className="heading">
@@ -51,7 +51,12 @@ Question.propTypes = {
 Question.defaultProps = {
   id: 0,
   prompt: '',
-  options: []
+  options: [],
+  form: {
+    action: '',
+    csrf_token: '',
+    csrf_param: ''
+  }
 }
 
 export default Question
