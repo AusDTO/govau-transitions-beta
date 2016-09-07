@@ -4,9 +4,28 @@ machine:
   node:
     version: 5.10.0
 
+dependencies:
+  pre:
+    - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+    - sudo dpkg -i cf-cli_amd64.deb
+    - cf -v
+
 test:
   override:
     - npm run build:production
     - npm test
     - bundle exec rspec spec --format progress
     - RAILS_ENV="test" RACK_ENV="test" bundle exec spinach
+
+deployment:
+  staging:
+    branch: feature/deployments
+    owner: AusDTO
+    commands:
+      - cf api https://api.system.staging.digital.gov.au
+      - cf auth $CF_STAGING_USER $CF_STAGING_PASSWORD
+      - cf target -o govau -s transitions
+      - curl https://api.rollbar.com/api/1/deploy/ -F access_token=$ROLLBAR_ACCESS_TOKEN
+          -F environment=production -F revision=`git log -n 1 --pretty=format:"%H"`
+          -F local_username=`whoami`
+      - cf push $CIRCLE_PROJECT_REPONAME
