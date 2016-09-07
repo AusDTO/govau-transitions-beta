@@ -15,7 +15,7 @@ class Question extends Component {
   render() {
     const { prompt, legend, type, form = {} } = this.props
     return (
-      <section className="content-main">
+      <section>
         <div className="heading">
           <a href="#" className="back fa fa-chevron-left">Back</a>
           <h3>{prompt}</h3>
