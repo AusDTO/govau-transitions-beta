@@ -2,6 +2,7 @@ import test from 'ava'
 import React from 'react'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
+import ReactTestUtils from 'react-addons-test-utils'
 
 import Question from '../../app/components/Question'
 import SingleChoiceQuestion from '../../app/components/SingleChoiceQuestion'
@@ -14,7 +15,12 @@ const questionData = {
     { label: 'Yes', value: 'yes' },
     { label: 'No', value: 'no' }
   ],
-  onSubmit: onSubmit
+  onSubmit: onSubmit,
+  form: {
+    action: '/q/1/a',
+    csrf_param: 'auth_token',
+    csrf_token: 'somerandomtoken'
+  }
 }
 
 const wrapper = shallow(<Question {...questionData} />)
@@ -44,6 +50,7 @@ test('will display a submit button', t => {
 
 test('will contain form container elements', t => {
   const form = wrapper.find('form')
+  t.is(form.prop('action'), '/q/1/a')
   t.true(form.is('.form'))
   t.truthy(form.length)
   t.truthy(wrapper.find('fieldset').length)
@@ -54,6 +61,29 @@ test('with no props provided', t => {
   const heading = wrapper.find('h3')
   t.truthy(heading.length)
   t.is(heading.text(), '')
+})
+
+test('generateQuestionElement without type', t => {
+  const q = new Question({ options: [] })
+  t.true(ReactTestUtils.isElementOfType(
+    q.generateQuestionElement(),
+    SingleChoiceQuestion
+  ))
+})
+
+test('generateQuestionElement with type', t => {
+  const q = new Question({ options: [] })
+  t.true(ReactTestUtils.isElementOfType(
+    q.generateQuestionElement('single'),
+    SingleChoiceQuestion
+  ))
+})
+
+test('should have CSRF token', t => {
+  const csrfElement = wrapper.find('input[type="hidden"]')
+  t.truthy(csrfElement.length)
+  t.is(csrfElement.prop('name'), 'auth_token')
+  t.is(csrfElement.prop('value'), 'somerandomtoken')
 })
 
 /**
