@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  # FIXME will need to integrate this with react form
-  #protect_from_forgery with: :exception
+  protect_from_forgery with: :exception
 
   def answer_session_for(wizard)
     @answer_sessions ||= {}

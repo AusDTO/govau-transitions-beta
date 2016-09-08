@@ -1,7 +1,7 @@
 import Question from '../components/Question'
 import { connect } from 'react-redux'
 
-export const mapStateToProps = ({ currentQuestion = {} }) => {
+export const mapStateToProps = ({ currentQuestion = {}, form = {} }) => {
   const {
     id = 0,
     prompt = '',
@@ -13,7 +13,8 @@ export const mapStateToProps = ({ currentQuestion = {} }) => {
   return {
     id,
     prompt,
-    options
+    options,
+    form
   }
 }
 
