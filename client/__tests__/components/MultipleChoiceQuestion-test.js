@@ -18,7 +18,7 @@ test('should render with a div wrapper', t => {
   t.is(wrapper.type(), 'div')
 })
 
-test('should render radio buttons', t => {
+test('should render checkboxes', t => {
   const wrapper = shallow(<MultipleChoiceQuestion {...props} />)
   t.true(wrapper.contains(<input type="checkbox" name="answer[options]" className="multiple-question__option" id="answer_pretty" value="pretty" />))
   t.true(wrapper.contains(<input type="checkbox" name="answer[options]" className="multiple-question__option" id="answer_handsome" value="handsome" />))
