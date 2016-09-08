@@ -1,10 +1,12 @@
 import React, { PropTypes, Component } from 'react'
 import SingleChoiceQuestion from './SingleChoiceQuestion'
+import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 
 class Question extends Component {
 
   elementMap = {
-    'single': SingleChoiceQuestion
+    'single': SingleChoiceQuestion,
+    'multiple': MultipleChoiceQuestion
   }
 
   constructor(props) {
