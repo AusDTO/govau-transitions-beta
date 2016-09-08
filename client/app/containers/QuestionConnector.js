@@ -3,11 +3,9 @@ import { connect } from 'react-redux'
 
 export const mapStateToProps = ({ question = {}, form = {} }) => {
   const {
-    id = 0,
-    prompt = '',
-    meta: {
-      options = []
-    } = {}
+    id,
+    prompt,
+    options
   } = question
 
   return {

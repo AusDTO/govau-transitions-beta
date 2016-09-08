@@ -25,7 +25,6 @@ class Question extends Component {
             action={form.action}>
             <fieldset>
               <legend>{legend}</legend>
-              <input type="hidden" name={form.csrf_param} value={form.csrf_token} />
               {this.generateQuestionElement.call(this, type)}
             </fieldset>
             <button type="submit">Next <i className="fa fa-chevron-right" aria-hidden="true"></i></button>
@@ -42,9 +41,7 @@ Question.propTypes = {
   legend: PropTypes.string,
   type: PropTypes.string,
   form: PropTypes.shape({
-    action: PropTypes.string.isRequired,
-    csrf_token: PropTypes.string.isRequired,
-    csrf_param: PropTypes.string.isRequired
+    action: PropTypes.string.isRequired
   }).isRequired
 }
 
@@ -53,9 +50,7 @@ Question.defaultProps = {
   prompt: '',
   options: [],
   form: {
-    action: '',
-    csrf_token: '',
-    csrf_param: ''
+    action: ''
   }
 }
 

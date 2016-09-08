@@ -4,19 +4,13 @@ import {
   mapDispatchToProps
 } from '../../app/containers/QuestionConnector'
 
-const rawQuestion = {
+const question = {
   id: 1,
-  wizard_id: 1,
-  order_num: 0,
   prompt: 'Tea or coffee?',
-  created_at: '2016-08-29T04:54:32.477Z',
-  updated_at: '2016-08-29T04:54:32.482Z',
-  meta: {
-    options: [
-      { label: 'Tea', value: 'tea' },
-      { label: 'Coffee', value: 'coffee' }
-    ]
-  }
+  options: [
+    { label: 'Tea', value: 'tea' },
+    { label: 'Coffee', value: 'coffee' }
+  ]
 }
 
 const form = {
@@ -26,7 +20,7 @@ const form = {
 }
 
 test('mapStateToProps with rawQuestion', t => {
-  t.deepEqual(mapStateToProps({ currentQuestion: rawQuestion, form }), {
+  t.deepEqual(mapStateToProps({ question, form }), {
     id: 1,
     prompt: 'Tea or coffee?',
     options: [ { label: 'Tea', value: 'tea' }, { label: 'Coffee', value: 'coffee' } ],
@@ -40,9 +34,9 @@ test('mapStateToProps with rawQuestion', t => {
 
 test('mapStateToProps without data', t => {
   t.deepEqual(mapStateToProps({}), {
-    id: 0,
-    prompt: '',
-    options: [],
+    id: void 0,
+    prompt: void 0,
+    options: void 0,
     form: {}
   })
 })
