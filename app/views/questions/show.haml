@@ -1,4 +1,4 @@
 %h1
   = @wizard.name
 
-= react_component("AgedCareWidget", props: @widget_properties)
+= react_component("AgedCareWidget", props: render(template: "/questions/show.json.jbuilder"))
