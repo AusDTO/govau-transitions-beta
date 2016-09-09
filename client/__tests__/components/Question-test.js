@@ -6,6 +6,7 @@ import ReactTestUtils from 'react-addons-test-utils'
 
 import Question from '../../app/components/Question'
 import SingleChoiceQuestion from '../../app/components/SingleChoiceQuestion'
+import MultipleChoiceQuestion from '../../app/components/MultipleChoiceQuestion'
 
 const onSubmit = sinon.spy()
 const questionData = {
@@ -76,6 +77,10 @@ test('generateQuestionElement with type', t => {
   t.true(ReactTestUtils.isElementOfType(
     q.generateQuestionElement('single'),
     SingleChoiceQuestion
+  ))
+  t.true(ReactTestUtils.isElementOfType(
+    q.generateQuestionElement('multiple'),
+    MultipleChoiceQuestion
   ))
 })
 
