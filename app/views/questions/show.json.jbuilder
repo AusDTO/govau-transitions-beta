@@ -7,4 +7,6 @@ json.question do
   end
 end
 
-json.form @widget_properties[:form]
+json.form do
+  json.action question_answers_path(question_id: @question.id)
+end
