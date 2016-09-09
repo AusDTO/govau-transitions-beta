@@ -31,6 +31,16 @@ const config = {
     modulesDirectories: [ 'node_modules' ]
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: [
+          path.resolve(__dirname, 'app'),
+          path.resolve(__dirname, '__tests__')
+        ]
+      }
+    ],
     loaders: [
       {
         test: require.resolve('react'),
@@ -73,7 +83,7 @@ const config = {
 
 module.exports = config
 
-console.log('NODE_ENV: ' + nodeEnv) // eslint-disable-line no-console
+console.log(`NODE_ENV: ${nodeEnv}`) // eslint-disable-line no-console
 if (devBuild) {
   module.exports.devtool = 'source-map'
 } else {
