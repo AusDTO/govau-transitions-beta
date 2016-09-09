@@ -19,11 +19,22 @@ const rawQuestion = {
   }
 }
 
+const form = {
+  action: '/questions/1/answers',
+  csrf_param: 'authenticity_token',
+  csrf_token: 'somerandomstring'
+}
+
 test('mapStateToProps with rawQuestion', t => {
-  t.deepEqual(mapStateToProps({ currentQuestion: rawQuestion }), {
+  t.deepEqual(mapStateToProps({ currentQuestion: rawQuestion, form }), {
     id: 1,
     prompt: 'Tea or coffee?',
-    options: [ { label: 'Tea', value: 'tea' }, { label: 'Coffee', value: 'coffee' } ]
+    options: [ { label: 'Tea', value: 'tea' }, { label: 'Coffee', value: 'coffee' } ],
+    form: {
+      action: '/questions/1/answers',
+      csrf_param: 'authenticity_token',
+      csrf_token: 'somerandomstring'
+    }
   })
 })
 
@@ -31,7 +42,8 @@ test('mapStateToProps without data', t => {
   t.deepEqual(mapStateToProps({}), {
     id: 0,
     prompt: '',
-    options: []
+    options: [],
+    form: {}
   })
 })
 
