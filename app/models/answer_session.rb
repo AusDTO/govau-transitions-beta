@@ -17,8 +17,8 @@ class AnswerSession < ApplicationRecord
   end
 
   def interpolate(text)
-    wizard.interpolations.inject do |text, interpolation|
-      interpolation.invoke text, self
+    wizard.interpolations.inject(text) do |str, interpolation|
+      interpolation.invoke str, self
     end
   end
 
