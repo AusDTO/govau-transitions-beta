@@ -16,6 +16,12 @@ class AnswerSession < ApplicationRecord
     raise 'Not a visible question'
   end
 
+  def interpolate(text)
+    wizard.interpolations.inject do |text, interpolation|
+      interpolation.invoke text, self
+    end
+  end
+
   def question_after(question)
     visible_questions[index_of(question) + 1]
   end

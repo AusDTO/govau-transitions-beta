@@ -18,6 +18,7 @@ gem 'haml', '~> 4.0.7'
 gem 'haml-rails', '~> 0.9'
 gem 'simple_form'
 gem 'jbuilder', '~> 2.6.0'
+gem 'draper', '>= 3.0.0.pre1'
 
 group :development do
   gem 'web-console', '~> 3.0'
