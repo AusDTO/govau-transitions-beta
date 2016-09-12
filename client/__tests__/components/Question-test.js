@@ -84,13 +84,6 @@ test('generateQuestionElement with type', t => {
   ))
 })
 
-test('should have CSRF token', t => {
-  const csrfElement = wrapper.find('input[type="hidden"]')
-  t.truthy(csrfElement.length)
-  t.is(csrfElement.prop('name'), 'auth_token')
-  t.is(csrfElement.prop('value'), 'somerandomtoken')
-})
-
 /**
  * Skipping this suite until we integrate the API.
  */

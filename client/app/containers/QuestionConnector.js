@@ -1,14 +1,12 @@
 import Question from '../components/Question'
 import { connect } from 'react-redux'
 
-export const mapStateToProps = ({ currentQuestion = {}, form = {} }) => {
+export const mapStateToProps = ({ question = {}, form = {} }) => {
   const {
-    id = 0,
-    prompt = '',
-    meta: {
-      options = []
-    } = {}
-  } = currentQuestion
+    id,
+    prompt,
+    options
+  } = question
 
   return {
     id,
