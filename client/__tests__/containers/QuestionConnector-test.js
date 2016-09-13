@@ -7,6 +7,7 @@ import {
 const question = {
   id: 1,
   prompt: 'Tea or coffee?',
+  type: 'SingleChoiceQuestion',
   options: [
     { label: 'Tea', value: 'tea' },
     { label: 'Coffee', value: 'coffee' }
@@ -14,20 +15,17 @@ const question = {
 }
 
 const form = {
-  action: '/questions/1/answers',
-  csrf_param: 'authenticity_token',
-  csrf_token: 'somerandomstring'
+  action: '/questions/1/answers'
 }
 
 test('mapStateToProps with rawQuestion', t => {
   t.deepEqual(mapStateToProps({ question, form }), {
     id: 1,
     prompt: 'Tea or coffee?',
+    type: 'SingleChoiceQuestion',
     options: [ { label: 'Tea', value: 'tea' }, { label: 'Coffee', value: 'coffee' } ],
     form: {
-      action: '/questions/1/answers',
-      csrf_param: 'authenticity_token',
-      csrf_token: 'somerandomstring'
+      action: '/questions/1/answers'
     }
   })
 })
@@ -36,6 +34,7 @@ test('mapStateToProps without data', t => {
   t.deepEqual(mapStateToProps({}), {
     id: void 0,
     prompt: void 0,
+    type: void 0,
     options: void 0,
     form: {}
   })

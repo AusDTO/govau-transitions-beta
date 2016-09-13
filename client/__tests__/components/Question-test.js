@@ -72,14 +72,18 @@ test('generateQuestionElement without type', t => {
   ))
 })
 
-test('generateQuestionElement with type', t => {
-  const q = new Question({ options: [] })
+test('generateQuestionElement with type SingleChoiceQuestion', t => {
+  const q = new Question({ options: [], type: 'SingleChoiceQuestion' })
   t.true(ReactTestUtils.isElementOfType(
-    q.generateQuestionElement('single'),
+    q.generateQuestionElement(),
     SingleChoiceQuestion
   ))
+})
+
+test('generateQuestionElement with type MultipleChoiceQuestion', t => {
+  const q = new Question({ options: [], type: 'MultipleChoiceQuestion' })
   t.true(ReactTestUtils.isElementOfType(
-    q.generateQuestionElement('multiple'),
+    q.generateQuestionElement(),
     MultipleChoiceQuestion
   ))
 })

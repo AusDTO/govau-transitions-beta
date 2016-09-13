@@ -4,18 +4,29 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 
 class Question extends Component {
 
+  /**
+   * List of available question components
+   * @type {Object}
+   */
   elementMap = {
-    'single': SingleChoiceQuestion,
-    'multiple': MultipleChoiceQuestion
+    SingleChoiceQuestion,
+    MultipleChoiceQuestion
   }
 
-  generateQuestionElement(type = 'single') {
-    const { options } = this.props
-    return React.createElement(this.elementMap[type], { options })
+  /**
+   * Based on the passed prop `type`. Generate a composite component with props based from `options`
+   * Defaults to SingleChoiceQuestion if a valid component isnt found
+   * @returns {ReactElement}  The composite component
+   */
+  generateQuestionElement() {
+    const { options, type } = this.props
+    // Default to SingleChoiceQuestion if an invalid type is passed
+    const element = this.elementMap[type] || SingleChoiceQuestion
+    return React.createElement(element, { options })
   }
 
   render() {
-    const { prompt, legend, type, form } = this.props
+    const { prompt, legend, form } = this.props
     return (
       <section>
         <div className="heading">
@@ -27,7 +38,7 @@ class Question extends Component {
             action={form.action}>
             <fieldset>
               <legend>{legend}</legend>
-              {this.generateQuestionElement.call(this, type)}
+              {this.generateQuestionElement()}
             </fieldset>
             <button type="submit">Next <i className="fa fa-chevron-right" aria-hidden="true"></i></button>
         </form>

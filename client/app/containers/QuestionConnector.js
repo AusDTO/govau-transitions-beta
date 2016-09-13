@@ -5,12 +5,14 @@ export const mapStateToProps = ({ question = {}, form = {} }) => {
   const {
     id,
     prompt,
+    type,
     options
   } = question
 
   return {
     id,
     prompt,
+    type,
     options,
     form
   }

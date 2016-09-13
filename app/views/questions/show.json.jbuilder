@@ -1,5 +1,5 @@
 json.question do
-  json.(@question, :id, :prompt)
+  json.(@question, :id, :prompt, :type)
   if @question.respond_to?(:options)
     json.options @question.options do |option|
       json.(option, :value, :label)
