@@ -14,13 +14,13 @@ class Question extends Component {
   }
 
   /**
-   * Based on the prop type, Generate a composite component with options prop
+   * Based on the passed prop `type`. Generate a composite component with props based from `options`
    * Defaults to SingleChoiceQuestion if a valid component isnt found
    * @returns {ReactElement}  The composite component
    */
   generateQuestionElement() {
     const { options, type } = this.props
-    // Default to SingleChoiceQuestion is an invalid type is passed
+    // Default to SingleChoiceQuestion if an invalid type is passed
     const element = this.elementMap[type] || SingleChoiceQuestion
     return React.createElement(element, { options })
   }
