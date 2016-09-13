@@ -4,5 +4,7 @@ import form from './form'
 
 export default combineReducers({
   question,
-  form
+  routing: routerReducer,
+  form: (s = {}) => s,
+  context: (s = {}) => s
 })
