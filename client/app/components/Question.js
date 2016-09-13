@@ -38,7 +38,7 @@ class Question extends Component {
             action={form.action}>
             <fieldset>
               <legend>{legend}</legend>
-              {this.generateQuestionElement.call(this)}
+              {this.generateQuestionElement()}
             </fieldset>
             <button type="submit">Next <i className="fa fa-chevron-right" aria-hidden="true"></i></button>
         </form>
