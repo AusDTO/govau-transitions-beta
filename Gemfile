@@ -20,6 +20,11 @@ gem 'simple_form'
 gem 'jbuilder', '~> 2.6.0'
 gem 'draper', '>= 3.0.0.pre1'
 
+group :assets do
+  gem 'sass-rails'
+  gem 'uglifier'
+end
+
 group :development do
   gem 'web-console', '~> 3.0'
   gem 'listen'
