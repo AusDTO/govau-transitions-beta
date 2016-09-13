@@ -20,14 +20,12 @@ if (typeof window !== 'undefined') {
 // railsContext provides contextual information especially useful for server rendering, such as
 // knowing the locale. See the React on Rails documentation for more info on the railsContext
 const AgedCareWidget = (props, _railsContext) => {
-  const store = createStore(props)
-  const reactComponent = (
+  const store = createStore(Object.assign({}, props, { context: _railsContext }))
+  return (
     <Provider store={store}>
       <QuestionConnector />
     </Provider>
   )
-  return reactComponent
 }
 
-// This is how react_on_rails can see the HelloWorldApp in the browser.
 ReactOnRails.register({ AgedCareWidget })
