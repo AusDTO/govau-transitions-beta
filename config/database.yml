@@ -1,5 +1,3 @@
-# Initially copied from spikes repo
-
 common: &common
   host:     <%= ENV['DB_HOST'] || '127.0.0.1' %>
   username: <%= ENV['DB_USER_NAME'] %>
