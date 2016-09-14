@@ -1,4 +1,4 @@
-# n.b. These seees are NOT idempotent. False sense of security. By the time we
+# n.b. These seeds are NOT idempotent. False sense of security. By the time we
 #      have real data we should be able to administer this stuff via an
 #      authenticated session over the web (Administrate or similar).
 
@@ -18,11 +18,27 @@ end
 
 Interpolation.create wizard: wizard do |q|
   q.source = person_question
+  q.name = 'reverse-subject'
+  q.inflections = { second: 'I', third: 'they' }
+end
+
+Interpolation.create wizard: wizard do |q|
+  q.source = person_question
   q.name = 'possessive'
   q.inflections = { second: 'your', third: 'their' }
 end
 
-#attribute :dimensions, Hash[Symbol => Float]
+Interpolation.create wizard: wizard do |q|
+  q.source = person_question
+  q.name = 'one-is'
+  q.inflections = { second: 'you\'re', third: 'they\'re' }
+end
+
+Interpolation.create wizard: wizard do |q|
+  q.source = person_question
+  q.name = 'reverse-one-is'
+  q.inflections = { second: 'I\'m', third: 'they\'re' }
+end
 
 SingleChoiceQuestion.create wizard: wizard do |q|
   q.prompt = 'How old are %{subject}?'
@@ -32,9 +48,11 @@ end
 
 SingleChoiceQuestion.create wizard: wizard do |q|
   q.prompt = 'Which best describes %{possessive} current need?'
-  q.options = Option.quick_list 'I\'m thinking about the future',
-    'I\'m starting not to manage', 'I know that I need some help',
-    'I\'m in a crisis'
+  q.options = Option.quick_list(
+    '%{reverse-one-is:capitalize} thinking about the future',
+    '%{reverse-one-is:capitalize} starting not to manage',
+    '%{reverse-subject:capitalize} know that %{reverse-subject} need some help',
+    '%{reverse-one-is:capitalize} in a crisis')
 end
 
 MultipleChoiceQuestion.create wizard: wizard do |q|

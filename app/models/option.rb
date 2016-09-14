@@ -12,4 +12,8 @@ class Option
 
   attribute :value, String
   attribute :label, String
+
+  def decorate(*args)
+    OptionDecorator.send :decorate, *[self].concat(args)
+  end
 end
