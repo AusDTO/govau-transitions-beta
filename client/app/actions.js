@@ -1,4 +1,5 @@
 import actionTypes from './constants'
+import 'whatwg-fetch'
 
 /**
  * When a user interacts with a question (selects) this action is fired.
@@ -17,8 +18,38 @@ const selectAnswer = (value) => {
  * @return {object}  Action object
  */
 const commit = () => {
+  return (dispatch, getState) => {
+    const { form } = getState()
+    dispatch(preCommit())
+    return fetch(`${form.action}.json`, {
+      method: 'post',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        answers: {
+          options: [
+            'two'
+          ]
+        }
+      })
+    }).then(r => r.json())
+      .then(json => dispatch(receiveQuestion(json)))
+  }
+}
+
+const preCommit = () => {
   return {
-    type: actionTypes.COMMIT
+    type: actionTypes.PRE_COMMIT
+  }
+}
+
+const receiveQuestion = (payload) => {
+  return {
+    type: actionTypes.POST_COMMIT,
+    payload
   }
 }
 
