@@ -41,6 +41,6 @@ test('mapStateToProps without data', t => {
 })
 
 test('mapDispatchToProps', t => {
-  const model = {}
-  t.deepEqual(mapDispatchToProps(model), {})
+  const dispatchProps = mapDispatchToProps({})
+  t.true(dispatchProps.hasOwnProperty('onSubmit'))
 })

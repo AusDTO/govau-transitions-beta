@@ -1,13 +1,9 @@
 import Question from '../components/Question'
 import { connect } from 'react-redux'
+import { selectAnswer, commit } from '../actions'
 
 export const mapStateToProps = ({ question = {}, form = {} }) => {
-  const {
-    id,
-    prompt,
-    type,
-    options
-  } = question
+  const { id, prompt, type, options } = question
 
   return {
     id,
@@ -18,8 +14,15 @@ export const mapStateToProps = ({ question = {}, form = {} }) => {
   }
 }
 
-export const mapDispatchToProps = () => {
-  return {}
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    onChange(value) {
+      dispatch(selectAnswer(value))
+    },
+    onSubmit() {
+      dispatch(commit())
+    }
+  }
 }
 
 const QuestionConnector = connect(

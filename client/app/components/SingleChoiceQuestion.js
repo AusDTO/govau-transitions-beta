@@ -1,10 +1,17 @@
 import React, { PropTypes } from 'react'
 
-const SingleChoiceQuestion = ({ options }) => (
+const SingleChoiceQuestion = ({ options, onChange }) => (
   <div className="single-question">
     {options.map(({ label, value }, i) => (
       <span key={value + i}>
-        <input type="radio" name="answer[options]" id={`answer_${value}`} className="single-question__option" value={value} />
+        <input
+          type="radio"
+          name="answer[options]"
+          id={`answer_${value}`}
+          className="single-question__option"
+          value={value}
+          onChange={onChange.bind(null, value)}
+        />
         <label htmlFor={`answer_${value}`} className="single-question__label">{label}</label>
       </span>
     ))}

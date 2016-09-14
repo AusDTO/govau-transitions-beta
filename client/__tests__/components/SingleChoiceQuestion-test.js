@@ -19,8 +19,12 @@ test('should render with a div wrapper', t => {
 
 test('should render radio buttons', t => {
   const wrapper = shallow(<SingleChoiceQuestion {...props} />)
-  t.true(wrapper.contains(<input type="radio" name="answer[options]" className="single-question__option" id="answer_yes" value="yes" />))
-  t.true(wrapper.contains(<input type="radio" name="answer[options]" className="single-question__option" id="answer_ofcourse" value="ofcourse" />))
+  const input = wrapper.find('input').first()
+  t.is(input.prop('name'), 'answer[options]')
+  t.is(input.prop('className'), 'single-question__option')
+  t.is(input.prop('id'), 'answer_yes')
+  t.is(input.prop('value'), 'yes')
+  t.is(input.prop('type'), 'radio')
 })
 
 test('rendering without props', t => {

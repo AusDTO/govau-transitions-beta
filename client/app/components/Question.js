@@ -19,14 +19,14 @@ class Question extends Component {
    * @returns {ReactElement}  The composite component
    */
   generateQuestionElement() {
-    const { options, type } = this.props
+    const { options, type, onChange } = this.props
     // Default to SingleChoiceQuestion if an invalid type is passed
     const element = this.elementMap[type] || SingleChoiceQuestion
-    return React.createElement(element, { options })
+    return React.createElement(element, { options, onChange })
   }
 
   render() {
-    const { prompt, legend, form } = this.props
+    const { prompt, legend, form, onSubmit } = this.props
     return (
       <section>
         <div className="heading">
@@ -35,6 +35,10 @@ class Question extends Component {
         </div>
         <form className="form"
             method="post"
+            onSubmit={e => {
+              e.preventDefault()
+              onSubmit()
+            }}
             action={form.action}>
             <fieldset>
               <legend>{legend}</legend>
