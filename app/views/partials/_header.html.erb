@@ -13,7 +13,7 @@
   <section class="prerelease-govau--header">
     <div class="wrapper">
 
-      <a class="govau--logo" href="http://www.gov.au">
+      <a class="govau--logo" href="<%= govau_url %>">
         <%= image_tag("/assets/icons/logo-govau-full-2x.png", width: "270") %>
         <div class="brandbar default">
           <div class="b1"></div>
@@ -22,7 +22,8 @@
       </a>
 
       <div class="feedback" tabindex="1">
-        <a href="" class="button--feedback" role="button">Give feedback</a>
+        <a href="<%= govau_url('/feedback/new') %>" class="button--feedback"
+          role="button">Give feedback</a>
       </div>
     </div>
 
