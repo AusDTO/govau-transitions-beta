@@ -9,7 +9,8 @@ const props = {
   options: [
     { label: 'Yes', value: 'yes' },
     { label: 'Of course!', value: 'ofcourse' }
-  ]
+  ],
+  onChange: f => f
 }
 
 test('should render with a div wrapper', t => {

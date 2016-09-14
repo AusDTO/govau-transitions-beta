@@ -1,4 +1,5 @@
 import test from 'ava'
+import sinon from 'sinon'
 import {
   mapStateToProps,
   mapDispatchToProps
@@ -43,4 +44,19 @@ test('mapStateToProps without data', t => {
 test('mapDispatchToProps', t => {
   const dispatchProps = mapDispatchToProps({})
   t.true(dispatchProps.hasOwnProperty('onSubmit'))
+  t.true(dispatchProps.hasOwnProperty('onChange'))
+})
+
+test('onSubmit called', t => {
+  const dispatch = sinon.spy()
+  const dispatchProps = mapDispatchToProps(dispatch)
+  dispatchProps.onSubmit()
+  t.true(dispatch.calledOnce)
+})
+
+test('onChange called', t => {
+  const dispatch = sinon.spy()
+  const dispatchProps = mapDispatchToProps(dispatch)
+  dispatchProps.onChange()
+  t.true(dispatch.calledOnce)
 })
