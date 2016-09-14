@@ -82,16 +82,16 @@ MultipleChoiceQuestion.create wizard: wizard do |q|
     'Shopping', 'Staying fit', 'Supervision', 'Transport', 'None'
 end
 
-location_question = LocationQuestion.create wizard: wizard do |q|
-  q.prompt = 'Where do you live?'
-end
-
-Interpolation.create wizard: wizard do |q|
-  q.source = location_question
-  q.name = 'location'
-  q.filters = 'first_word' # Maybe available filters can also be applied ad hoc?
-                           # e.g. %{subject:titleize}
-end
+# location_question = LocationQuestion.create wizard: wizard do |q|
+#   q.prompt = 'Where do you live?'
+# end
+#
+# Interpolation.create wizard: wizard do |q|
+#   q.source = location_question
+#   q.name = 'location'
+#   q.filters = 'first_word' # Maybe available filters can also be applied ad hoc?
+#                            # e.g. %{subject:titleize}
+# end
 
 MultipleChoiceQuestion.create wizard: wizard do |q|
   q.prompt = 'What options are you interested in finding out about?'
