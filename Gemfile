@@ -47,6 +47,7 @@ end
 group :development, :test do
   gem 'spinach-rails', '~> 0.2'
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
 end
 
 # Eurgh
