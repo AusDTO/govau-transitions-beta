@@ -3,8 +3,12 @@ class AnswersController < ApplicationController
 
   def create
     answer_session = answer_session_for @question.wizard
-    answer = answer_session.answers.find_or_create_by(question_id: @question.id)
-    answer.update_attribute :value, params[:answer][:options]
+    answer_session.answers.where(question_id: @question.id).destroy_all
+
+    [*params[:answer][:options]].each do |value|
+      answer_session.answers.create question_id: @question.id, value: value
+    end
+
     next_question = answer_session.question_after @question
 
     if next_question.present?
@@ -18,5 +22,6 @@ class AnswersController < ApplicationController
 
   def set_question
     @question = Question.find params[:question_id]
+    @wizard = @question.wizard
   end
 end
