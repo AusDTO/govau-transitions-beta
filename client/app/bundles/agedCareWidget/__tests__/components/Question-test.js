@@ -4,9 +4,9 @@ import { shallow } from 'enzyme'
 import sinon from 'sinon'
 import ReactTestUtils from 'react-addons-test-utils'
 
-import Question from '../../app/components/Question'
-import SingleChoiceQuestion from '../../app/components/SingleChoiceQuestion'
-import MultipleChoiceQuestion from '../../app/components/MultipleChoiceQuestion'
+import Question from '../../components/Question'
+import SingleChoiceQuestion from '../../components/SingleChoiceQuestion'
+import MultipleChoiceQuestion from '../../components/MultipleChoiceQuestion'
 
 const onSubmit = sinon.spy()
 const questionData = {

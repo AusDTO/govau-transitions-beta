@@ -2,7 +2,7 @@ import test from 'ava'
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import MultipleChoiceQuestion from '../../app/components/MultipleChoiceQuestion'
+import MultipleChoiceQuestion from '../../components/MultipleChoiceQuestion'
 
 const props = {
   id: 1,
