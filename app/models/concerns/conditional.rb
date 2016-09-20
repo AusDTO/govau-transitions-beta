@@ -1,5 +1,6 @@
 =begin
-
+Allows objects of the included class to be shown or hidden depending on the
+related Conditions. (Currently, this class is included by Question and Result).
 =end
 
 module Conditional

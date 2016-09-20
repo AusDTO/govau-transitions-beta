@@ -19,3 +19,7 @@ Run locally
 ```
 $ npm run rails-server
 ```
+
+## More info
+
+See the `doc` folder.
