@@ -37,7 +37,7 @@ class Question extends Component {
             method="post"
             onSubmit={e => {
               e.preventDefault()
-              onSubmit()
+              onSubmit(e.target)
             }}
             action={form.action}>
             <fieldset>

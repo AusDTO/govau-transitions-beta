@@ -19,8 +19,8 @@ export const mapDispatchToProps = (dispatch) => {
     onChange(value) {
       dispatch(selectAnswer(value))
     },
-    onSubmit() {
-      dispatch(commit())
+    onSubmit(form) {
+      dispatch(commit(form))
     }
   }
 }
