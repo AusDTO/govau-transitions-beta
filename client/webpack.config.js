@@ -6,12 +6,14 @@ const autoprefixer = require('autoprefixer')
 const devBuild = process.env.NODE_ENV !== 'production'
 const nodeEnv = devBuild ? 'development' : 'production'
 
+const AGE_CARE_BASE_PATH = './app/bundles/agedCareWidget'
+
 const config = {
   entry: [
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/startup/App'
+    `${AGE_CARE_BASE_PATH}/startup/App`
   ],
 
   output: {
@@ -21,7 +23,7 @@ const config = {
 
   resolve: {
     root: [
-      path.resolve('./app')
+      path.resolve(AGE_CARE_BASE_PATH)
     ],
     extensions: [ '', '.js', '.jsx' ],
     alias: {

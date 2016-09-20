@@ -81,7 +81,7 @@
   "ava": {
     "babel": "inherit",
     "require": [
-      "./__tests__/helpers/setup-test-env.js"
+      "./app/lib/helpers/setup-test-env.js"
     ]
   }
 }

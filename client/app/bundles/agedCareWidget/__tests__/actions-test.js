@@ -1,6 +1,6 @@
 import test from 'ava'
-import actionTypes from '../app/constants'
-import * as actions from '../app/actions'
+import actionTypes from '../constants'
+import * as actions from '../actions'
 
 test('should create an action to go next', t => {
   const expectedAction = {

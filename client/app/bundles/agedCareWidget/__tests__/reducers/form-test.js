@@ -1,5 +1,5 @@
 import test from 'ava'
-import reducer from '../../app/reducers/form'
+import reducer from '../../reducers/form'
 
 test('should return the inital state', t => {
   t.deepEqual(reducer(void 0, {}), {})

@@ -2,7 +2,7 @@ import test from 'ava'
 import {
   mapStateToProps,
   mapDispatchToProps
-} from '../../app/containers/QuestionConnector'
+} from '../../containers/QuestionConnector'
 
 const question = {
   id: 1,
