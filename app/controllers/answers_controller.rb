@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
     if next_question.present?
       redirect_to question_path id: next_question.id
     else
-      redirect_to wizard_results_path wizard_id: @question.wizard.slug
+      redirect_to wizard_result_categories_path wizard_id: @question.wizard.slug
     end
   end
 

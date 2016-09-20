@@ -1,6 +1,6 @@
-require 'byebug'
-
 class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
+  include SharedSteps::WizardSteps
+
   step 'phoenixes have a twelve-month regeneration cycle' do
     @cycle_question = Fabricate(:single_choice_question, wizard: wizard) do
       prompt { 'How many months has it been since your last regeneration?' }
@@ -55,21 +55,19 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
   end
 
   step 'I should be asked how many months it has been since my last regeneration' do
-    expect(@question_page).to have_prompt
-    expect(@question_page.prompt.text).to eq @cycle_question.prompt
+    expect_prompt @cycle_question.prompt
   end
 
   step 'I answer twelve months' do
-    @question_page.answer_option('Twelve').set true
+    choose_answer 'Twelve'
   end
 
   step 'I should be asked if I am near flammable objects' do
-    expect(@question_page).to have_prompt
-    expect(@question_page.prompt).to have_text @flammable_question.prompt
+    expect_prompt @flammable_question.prompt
   end
 
   step 'I answer yes' do
-    @question_page.answer_option('Yes').set true
+    choose_answer 'Yes'
   end
 
   step 'I should be advised to move location' do
@@ -81,7 +79,7 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
   end
 
   step 'I answer six months' do
-    @question_page.answer_option('Six').set true
+    choose_answer 'Six'
   end
 
   step 'I should be advised to check back closer to the time' do
@@ -93,20 +91,11 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
   end
 
   step 'I answer no' do
-    @question_page.answer_option('No').set true
+    choose_answer 'No'
   end
 
   step 'I should be advised to sit tight and stay calm' do
     result_should_have_body @sit_tight_result.body
-  end
-
-  step 'I proceed' do
-    @question_page.next_button.click
-  end
-
-  step 'I begin the wizard' do
-    @wizard_page.begin_link.click
-    @question_page = Pages::Question.new
   end
 
   private

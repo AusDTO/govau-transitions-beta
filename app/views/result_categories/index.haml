@@ -1,0 +1,16 @@
+%h1 Explore your results
+.abstract
+  %p Find out how to apply for government support and explore useful services in your area.
+  %h3 Local services
+%nav.results-tiles
+  %ul
+    - @result_categories.each do |category|
+      %li
+        %h3
+          = link_to category.title, wizard_result_category_path(wizard_id: @wizard.slug, id: category.slug)
+        %p
+          %span.number
+            = category.result_groups.count
+          %span Possible next steps
+        %p
+          = category.description

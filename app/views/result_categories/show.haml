@@ -1,0 +1,24 @@
+%h1
+  = @result_category.title
+.abstract
+  %p
+    = @result_category.description
+  %h3 Local services
+%div
+  %h3
+    %span.number
+      = @result_category.result_groups.count
+    Possible next steps
+  %p
+    = @result_category.rationale
+  .steps-list
+    - @result_category.result_groups.each do |group|
+      %section.accorion
+        .accordion-button
+          %span.accordion-content
+            = group.title
+        .accordion-panel
+          %p
+            = group.body
+          %ul.step-actions
+            = render group.results

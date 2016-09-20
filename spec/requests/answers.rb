@@ -23,7 +23,7 @@ RSpec.describe 'Answers', type: :request do
 
       describe 'Last question' do
         let(:path) { question_answers_path question_id: question_three.id }
-        it { is_expected.to redirect_to wizard_results_path wizard_id: wizard.slug }
+        it { is_expected.to redirect_to wizard_result_categories_path wizard_id: wizard.slug }
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe 'Answers', type: :request do
         let(:question) { Fabricate(:multiple_choice_question, wizard: wizard,
           options: options) }
 
-        it { is_expected.to redirect_to wizard_results_path(
+        it { is_expected.to redirect_to wizard_result_categories_path(
           wizard_id: wizard.slug) }
         specify { subject; expect(AnswerSession.last.answers.where(
           question_id: question.id).count).to eq 2 }

@@ -21,7 +21,7 @@ Feature: Real questions
     When I answer that I'm thinking about the future
     And I proceed
     Then I should be asked what support I'm interested in
-    When I answer staying at home
+    When I answer help at home
     And I answer health conditions
     And I proceed
     Then I should be asked about physical issues
@@ -34,15 +34,11 @@ Feature: Real questions
     Then I should be asked what help is needed at home
     And I answer personal hygiene
     And I proceed
-    Then I should be asked where I live
-    When I answer Morphettvale
-    And I proceed
     Then I should see the results overview page
-    And it should have two result tiles
-    When I click the help to stay at home tile
-    Then I should arrive at the help to stay at home result page
+    And it should have two result category tiles
+    When I click the help at home tile
+    Then I should arrive at the help at home result page
     And it should have general information about help to stay at home
-    And there should be a menu to navigate to other results
     And I should see three possible next steps
     And I should see a block for getting in-home help
     And the getting in-home help block should have brief info on My Aged Care
@@ -59,6 +55,7 @@ Feature: Real questions
     And the local services block should link to My Aged Care providers
     And I should see a further information block
     And the further information block should link to SA Health service providers
+    And there should be a menu to navigate to other results
     When I click in the result nav menu on health and wellbeing
     Then I should arrive at the health and wellbeing result page
     And it should have general information about health and wellbeing

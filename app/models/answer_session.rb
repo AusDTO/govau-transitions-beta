@@ -31,10 +31,26 @@ class AnswerSession < ApplicationRecord
     visible_questions[idx - 1] if idx > 0
   end
 
-  def results
+  def results(for_container: nil)
     wizard.results.select do |result|
-      result.visible_given_answers? answers
+      if for_container.nil? || result.container == for_container
+        result.visible_given_answers? answers
+      end
     end
+  end
+
+  def result_categories
+    results.collect {|result|
+      result.result_category
+    }.uniq
+  end
+
+  def result_groups(for_category: nil)
+    results.collect {|result|
+      result.result_group
+    }.uniq.select {|result_group|
+      for_category.nil? || for_category == result_group.result_category
+    }
   end
 
   def visible_questions

@@ -1,5 +1,5 @@
 class OptionDecorator < Draper::Decorator
-  include Interpolatable
+  include AnswerSessionContextualised
 
   def label
     interpolate object.label

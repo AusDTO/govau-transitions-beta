@@ -55,9 +55,9 @@ SingleChoiceQuestion.create wizard: wizard do |q|
     '%{reverse-one-is:capitalize} in a crisis')
 end
 
-MultipleChoiceQuestion.create wizard: wizard do |q|
+q_support = MultipleChoiceQuestion.create wizard: wizard do |q|
   q.prompt = 'What support are you interested in learning about?'
-  q.options = Option.quick_list 'Staying at home',
+  q.options = Option.quick_list 'Help at home',
     'Moving to a more appropriate setup', 'Getting out and about',
     'Health conditions'
 end
@@ -93,10 +93,81 @@ end
 #                            # e.g. %{subject:titleize}
 # end
 
-MultipleChoiceQuestion.create wizard: wizard do |q|
-  q.prompt = 'What options are you interested in finding out about?'
-  q.options = Option.quick_list 'Living near to %{location}', 'Single storey',
-    'Supervision and support', 'Nursing care', 'Staying independent at home',
-    'Help in maintaining a home', 'Living in a community',
-    'Cultural connections', 'None of the above'
+# MultipleChoiceQuestion.create wizard: wizard do |q|
+#   q.prompt = 'What options are you interested in finding out about?'
+#   q.options = Option.quick_list 'Living near to %{location}', 'Single storey',
+#     'Supervision and support', 'Nursing care', 'Staying independent at home',
+#     'Help in maintaining a home', 'Living in a community',
+#     'Cultural connections', 'None of the above'
+# end
+
+hah = ResultCategory.create wizard: wizard do |c|
+  c.title = 'Help at home'
+  c.description = 'Get the help and advice you need to stay in your home,
+    a family or a friend\'s home, or a retirement village.'
+  c.rationale = 'Find out how to stay independent in your home by getting
+    support for day-to-day activities, personal care, transport and nursing
+    and health care.'
 end
+
+ghh = ResultGroup.create result_category: hah do |g|
+  g.title = 'Getting home help'
+  g.body = 'You can arrange for an assessor to visit you in your home so they
+    can see your situation and work out the right help for you. They will then
+    decide if the government should pay for some or all of your support
+    services.'
+end
+
+Condition.create conditional: ghh, source: q_support do |c|
+  c.operator = 'eq'
+  c.comparators = ['staying-at-home']
+end
+
+TopicPageResult.create wizard: wizard, container: ghh do |r|
+  r.title = 'Being assessed for support'
+  r.path = '/help-for-older-people/being-assessed-for-support'
+end
+
+afa = ResultGroup.create result_category: hah do |g|
+  g.title = 'Arrange for an assessment'
+  g.body = 'If you would like an assessment in your home call My Aged Care.
+    They will then recommend service providers, or give you a referral code
+    to choose your own. Call Monday to Friday 8am to 8pm, or Saturday 10am
+    to 2pm'
+end
+
+Condition.create conditional: ghh, source: q_support do |c|
+  c.operator = 'eq'
+  c.comparators = ['staying-at-home']
+end
+
+PhoneNumberResult.create wizard: wizard, container: afa do |r|
+  r.phone_number = '1800 200 422'
+end
+
+ExternalLinkResult.create wizard: wizard, container: hah do |r|
+  r.title = 'View SA Health website: Find a local home and community service provider'
+  r.url = 'http://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/health+services/hospitals+and+health+services+-+country+south+australia'
+end
+
+ExternalLinkResult.create wizard: wizard, container: hah do |r|
+  r.title = 'View SA Health website: Find hospitals and health services'
+  r.url = 'http://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/health+services/hospitals+and+health+services+-+country+south+australia'
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
