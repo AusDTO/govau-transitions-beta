@@ -80,7 +80,7 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
 
   step 'I should see the results overview page' do
     @results_page = Pages::Result.new
-    expect(@results_page.title.text).to eq 'Explore your results'
+    expect(@results_page.heading.text).to eq 'Explore your results'
   end
 
   step 'it should have two result category tiles' do
@@ -88,16 +88,17 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
     expect(@results_page.tiles.count).to eq 2
   end
 
-  step 'I click the help to stay at home tile' do
+  step 'I click the help at home tile' do
     @results_page.tile_for_category('Help at home').link.click
   end
 
   step 'I should arrive at the help at home result page' do
-    expect(@results_page).to have_title 'Help at home'
+    expect(@results_page.heading.text).to eq 'Help at home'
   end
 
   step 'it should have general information about help at home' do
-    pending 'step not implemented'
+    expect(@results_page.abstract.text).to include(
+      'Get the help and advice you need to stay in your home')
   end
 
   step 'I should see three possible next steps' do

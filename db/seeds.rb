@@ -200,7 +200,55 @@ iacp = ResultGroup.create! result_category: shw do |g|
     products and services. Complete and take it to your doctor.'
 end
 
-# View the Australian Government Department of Health website: Continence Aids Payment Scheme application
+ExternalLinkResult.create! wizard: wizard, container: iacp do |r|
+  r.title = 'View the Australian Government Department of Health website:
+    Continence Aids Payment Scheme application'
+  r.url = 'http://www.bladderbowel.gov.au/caps/application.htm'
+  r.label = 'Form'
+end
+
+iga = ResultGroup.create! result_category: shw do |g|
+  g.title = 'Incontinence: Get advice about incontinence'
+  g.body = 'Contact the Continence Foundation of Australia helpline, Monday to
+    Friday, 8am to 8pm'
+end
+
+PhoneNumberResult.create! wizard: wizard, container: iga do |r|
+  r.phone_number = '800 330 0666'
+end
+
+ExternalLinkResult.create! wizard: wizard, container: shw do |r|
+  r.title = 'View the South Australia Alzheimer\'s Australia website: Learn
+    about dementia'
+  r.url = 'https://nsw.fightdementia.org.au/national/about-dementia'
+end
+
+ExternalLinkResult.create! wizard: wizard, container: shw do |r|
+  r.title = 'View the My Aged Care website: What to do about dementia in the
+    short and long term'
+  r.url = 'http://www.myagedcare.gov.au/health-conditions/dementia'
+end
+
+ExternalLinkResult.create! wizard: wizard, container: shw do |r|
+  r.title = 'View the HealthDirect website: How to care for someone with
+    dementia'
+  r.url = 'http://www.healthdirect.gov.au/caring-for-someone-with-dementia'
+end
+
+ExternalLinkResult.create! wizard: wizard, container: shw do |r|
+  r.title = 'View the HealthDirect website: Mental health resources for seniors'
+  r.url = 'http://www.mindhealthconnect.org.au/older-person-mental-health'
+end
+
+
+
+
+
+
+
+
+
+#
 
 
 

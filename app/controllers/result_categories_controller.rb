@@ -1,6 +1,7 @@
 class ResultCategoriesController < ApplicationController
   def index
     @result_categories = answer_session.result_categories
+
     @orphaned_results = answer_session.results.select do |result|
       result.orphan?
     end
@@ -8,6 +9,7 @@ class ResultCategoriesController < ApplicationController
 
   def show
     @result_category = ResultCategory.friendly.find(params[:id]).decorate
+    @ungrouped_results = answer_session.results for_container: @result_category
 
     @other_categories = answer_session.result_categories.select do |cat|
       cat != @result_category

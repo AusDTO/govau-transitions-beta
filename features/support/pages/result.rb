@@ -1,6 +1,6 @@
 module Pages
   class ResultSectionTile < SitePrism::Section
-    element :title, 'h3'
+    element :heading, 'h3'
     element :link, 'h3 a'
     element :next_steps_count, 'p span.number'
     element :description, 'p[2]'
@@ -9,14 +9,15 @@ module Pages
   class Result < SitePrism::Page
     set_url "/transitions{/slug}/results{/id}"
 
-    element :title, 'h1'
+    element :heading, 'h1'
+    element :description, '.abstract'
 
-    sections :tiles, ::Pages::ResultSectionTile, 'nav.results-tiles'
+    sections :tiles, ::Pages::ResultSectionTile, 'nav.results-tiles ul li'
     elements :orphan_results, 'ul.secondary-links li'
 
     def tile_for_category(category_name)
-      tiles.select do |tile|
-        tile.title.text == category_name
+      tiles.find do |tile|
+        tile.heading.text == category_name
       end
     end
   end

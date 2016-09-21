@@ -38,7 +38,7 @@ Feature: Real questions
     And it should have two result category tiles
     When I click the help at home tile
     Then I should arrive at the help at home result page
-    And it should have general information about help to stay at home
+    And it should have general information about help at home
     And I should see three possible next steps
     And I should see a block for getting in-home help
     And the getting in-home help block should have brief info on My Aged Care

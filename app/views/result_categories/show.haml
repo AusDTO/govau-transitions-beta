@@ -22,3 +22,9 @@
             = group.body
           %ul.step-actions
             = render group.results
+- if @ungrouped_results.any?
+  %div
+    %h3 Further information
+    .information-list
+      %ul
+        = render @ungrouped_results

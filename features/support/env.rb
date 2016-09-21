@@ -14,7 +14,7 @@ require 'byebug'
 DatabaseCleaner.strategy = :truncation
 
 # Run settings
-#Spinach.config.save_and_open_page_on_failure = true
+Spinach.config.save_and_open_page_on_failure = true
 
 SitePrism.configure do |config|
 	config.use_implicit_waits = false
