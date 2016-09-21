@@ -3,5 +3,6 @@ class ExternalLinkResult < Result
 
   store_attributes :meta do
     url String
+    label String
   end
 end

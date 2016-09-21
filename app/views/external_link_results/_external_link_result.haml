@@ -1,0 +1,4 @@
+%li.link
+  -if external_link_result.label.present?
+    = external_link_result.label
+  = link_to external_link_result.title, external_link_result.url
