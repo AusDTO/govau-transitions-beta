@@ -40,11 +40,11 @@ Interpolation.create! wizard: wizard do |q|
   q.inflections = { second: 'I\'m', third: 'they\'re' }
 end
 
-SingleChoiceQuestion.create! wizard: wizard do |q|
-  q.prompt = 'How old are %{subject}?'
-  q.options = Option.quick_list 'Under 50', '50 to 64', '65 to 79', '80 to 95',
-    '95 plus'
-end
+# SingleChoiceQuestion.create! wizard: wizard do |q|
+#   q.prompt = 'How old are %{subject}?'
+#   q.options = Option.quick_list 'Under 50', '50 to 64', '65 to 79', '80 to 95',
+#     '95 plus'
+# end
 
 SingleChoiceQuestion.create! wizard: wizard do |q|
   q.prompt = 'Which best describes %{possessive} current need?'
@@ -145,6 +145,19 @@ PhoneNumberResult.create! wizard: wizard, container: afa do |r|
   r.phone_number = '1800 200 422'
 end
 
+csp = ResultGroup.create! result_category: hah do |g|
+  g.title = 'Choosing a service provider'
+  g.body = 'Some of the services provided may be very personal so it is
+    important you or the person you are caring for feels comfortable with them.
+    Find out what you need to consider before contacting a selection of
+    providers.'
+end
+
+TopicPageResult.create! wizard: wizard, container: csp do |r|
+  r.title = 'Choosing a home help service provider'
+  r.path = '/help-for-older-people/choosing-a-home-help-service-provider'
+end
+
 ExternalLinkResult.create! wizard: wizard, container: hah do |r|
   r.title = 'View SA Health website: Find a local home and community service provider'
   r.url = 'http://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/health+services/hospitals+and+health+services+-+country+south+australia'
@@ -153,11 +166,6 @@ end
 ExternalLinkResult.create! wizard: wizard, container: hah do |r|
   r.title = 'View SA Health website: Find hospitals and health services'
   r.url = 'http://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/health+services/hospitals+and+health+services+-+country+south+australia'
-end
-
-ExternalLinkResult.create! wizard: wizard, container: hah do |r|
-  r.title = 'View the Alzheimer\'s Australia, fight dementia website'
-  r.url = 'https://www.fightdementia.org.au/'
 end
 
 shw = ResultCategory.create! wizard: wizard do |c|
@@ -205,6 +213,11 @@ ExternalLinkResult.create! wizard: wizard, container: iacp do |r|
     Continence Aids Payment Scheme application'
   r.url = 'http://www.bladderbowel.gov.au/caps/application.htm'
   r.label = 'Form'
+end
+
+ExternalLinkResult.create! wizard: wizard, container: iacp do |r|
+  r.title = 'View the Alzheimer\'s Australia, fight dementia website'
+  r.url = 'https://www.fightdementia.org.au/'
 end
 
 iga = ResultGroup.create! result_category: shw do |g|

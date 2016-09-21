@@ -9,7 +9,8 @@ namespace :db do
       end
     end
 
-    [Answer, Condition, Question, Result, AnswerSession, Wizard].each do |clazz|
+    [Answer, Condition, Question, Result, ResultGroup, ResultCategory,
+        AnswerSession, Wizard].each do |clazz|
       clazz.delete_all
     end
   end

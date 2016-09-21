@@ -22,14 +22,6 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
     choose_answer 'Myself'
   end
 
-  step 'I should be asked how old I am' do
-    expect_prompt 'How old are you?'
-  end
-
-  step 'I answer 72' do
-    choose_answer '65 to 79'
-  end
-
   step 'I should be asked about my current need' do
     expect_prompt 'Which best describes your current need?'
   end
@@ -50,7 +42,11 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
     choose_answer 'Health conditions'
   end
 
-  step 'I should be asked about physical issues' do
+  step 'I answer health conditions' do
+    choose_answer 'Transport'
+  end
+
+  step 'I should be asked about health conditions' do
     expect_prompt 'Are you concerned about any of these health issues?'
   end
 
@@ -76,6 +72,10 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
 
   step 'I answer personal hygiene' do
     choose_answer 'Personal hygiene'
+  end
+
+  step 'I answer housework' do
+    choose_answer 'Housework'
   end
 
   step 'I should see the results overview page' do
@@ -141,9 +141,17 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
       'Find hospitals and health services')).to be_present
   end
 
-  step 'there should be an ungrouped result for the Fight Dementia website' do
-    expect(@results_page.ungrouped_result_containing_text(
-      'fight dementia website')).to be_present
+  step 'I should see a block for choosing a service provider' do
+    @csp = @results_page.block_for_group('Choosing a service provider')
+    expect(@csp).to be_present
+  end
+
+  step 'the choosing a service provider help block should have some basic info' do
+    expect(@csp.body.text).to include(
+      'Some of the services provided may be very personal')
+  end
+
+  step 'the choosing a service provider help block should have a comparison link' do
   end
 
   step 'I should see a block for fee estimation' do
@@ -212,5 +220,10 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
 
   step 'I should see a block for incontinence advice' do
     pending 'step not implemented'
+  end
+
+  step 'there should be an ungrouped result for the Fight Dementia website' do
+    expect(@results_page.ungrouped_result_containing_text(
+      'fight dementia website')).to be_present
   end
 end

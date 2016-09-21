@@ -14,17 +14,15 @@ Feature: Real questions
     Then I should be asked whether I am looking for myself or someone else
     When I answer myself
     And I proceed
-    Then I should be asked how old I am
-    When I answer 72
-    And I proceed
     Then I should be asked about my current need
     When I answer that I'm thinking about the future
     And I proceed
     Then I should be asked what support I'm interested in
     When I answer help at home
     And I answer health conditions
+    And I answer transport
     And I proceed
-    Then I should be asked about physical issues
+    Then I should be asked about health conditions
     When I answer incontinence
     And I answer dementia
     And I proceed
@@ -33,6 +31,7 @@ Feature: Real questions
     And I proceed
     Then I should be asked what help is needed at home
     And I answer personal hygiene
+    And I answer housework
     And I proceed
     Then I should see the results overview page
     And it should have two result category tiles
@@ -46,12 +45,15 @@ Feature: Real questions
     And I should see a block for arranging an assessment
     And the arranging an assessment block should have some basic info on arranging an assessment
     And the arranging an assessment block should have the My Aged Care phone number
+    And I should see a block for choosing a service provider
+    And the choosing a service provider help block should have some basic info
+    And the choosing a service provider help block should have a comparison link
+
     And there should be an ungrouped result for SA local homes and community services
     And there should be an ungrouped result for SA hospitals and health services
     And there should be an ungrouped result for the Fight Dementia website
-    
-    And the types of in-home help block should have some basic info
-    And the types of in-home help block should have a comparison link
+
+
     And I should see a block for fee estimation
     And the fee estimation block should have some basic info
     And the fee estimation block should link to My Aged Care estimation form
