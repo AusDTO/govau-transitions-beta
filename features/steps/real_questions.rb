@@ -97,40 +97,53 @@ class Spinach::Features::RealQuestions < Spinach::FeatureSteps
   end
 
   step 'it should have general information about help at home' do
-    expect(@results_page.abstract.text).to include(
+    expect(@results_page.description.text).to include(
       'Get the help and advice you need to stay in your home')
   end
 
-  step 'I should see three possible next steps' do
-    pending 'step not implemented'
+  step 'I should see two possible next steps' do
+    expect(@results_page.group_count.text).to eq '2'
   end
 
-  step 'I should see a block for getting in-home help' do
-    pending 'step not implemented'
+  step 'I should see a block for getting home help' do
+    @ghh = @results_page.block_for_group('Getting home help')
+    expect(@ghh).to be_present
   end
 
-  step 'the getting in-home help block should have brief info on My Aged Care' do
-    pending 'step not implemented'
+  step 'the getting home help block should have brief info on getting assessed' do
+    expect(@ghh.body.text).to include 'You can arrange for an assessor to visit you'
   end
 
-  step 'the getting in-home help block should have the My Aged Care phone number' do
-    pending 'step not implemented'
+  step 'the getting home help block should have a link for being assessed' do
+    expect(@ghh.result_with_content 'Being assessed for support').to be_present
   end
 
-  step 'the getting in-home help block should have a link for being assessed' do
-    pending 'step not implemented'
+  step 'I should see a block for arranging an assessment' do
+    @aaa = @results_page.block_for_group('Arrange for an assessment')
+    expect(@aaa).to be_present
   end
 
-  step 'I should see a block for types of in-home help' do
-    pending 'step not implemented'
+  step 'the arranging an assessment block should have some basic info on arranging an assessment' do
+    expect(@aaa.body.text).to include 'If you would like an assessment in your home'
   end
 
-  step 'the types of in-home help block should have some basic info' do
-    pending 'step not implemented'
+  step 'the arranging an assessment block should have the My Aged Care phone number' do
+    expect(@aaa.result_with_content 'Call: 1800 200 422').to be_present
   end
 
-  step 'the types of in-home help block should have a comparison link' do
-    pending 'step not implemented'
+  step 'there should be an ungrouped result for SA local homes and community services' do
+    expect(@results_page.ungrouped_result_containing_text(
+      'Find a local home')).to be_present
+  end
+
+  step 'there should be an ungrouped result for SA hospitals and health services' do
+    expect(@results_page.ungrouped_result_containing_text(
+      'Find hospitals and health services')).to be_present
+  end
+
+  step 'there should be an ungrouped result for the Fight Dementia website' do
+    expect(@results_page.ungrouped_result_containing_text(
+      'fight dementia website')).to be_present
   end
 
   step 'I should see a block for fee estimation' do

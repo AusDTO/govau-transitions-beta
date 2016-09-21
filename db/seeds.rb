@@ -155,6 +155,11 @@ ExternalLinkResult.create! wizard: wizard, container: hah do |r|
   r.url = 'http://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/health+services/hospitals+and+health+services+-+country+south+australia'
 end
 
+ExternalLinkResult.create! wizard: wizard, container: hah do |r|
+  r.title = 'View the Alzheimer\'s Australia, fight dementia website'
+  r.url = 'https://www.fightdementia.org.au/'
+end
+
 shw = ResultCategory.create! wizard: wizard do |c|
   c.title = 'Support for health and wellbeing'
   c.description = 'Find out about the government support, advice and local
@@ -172,11 +177,6 @@ end
 
 PhoneNumberResult.create! wizard: wizard, container: dha do |r|
   r.phone_number = '1800 100 500'
-end
-
-ExternalLinkResult.create! wizard: wizard, container: hah do |r|
-  r.title = 'View the Alzheimer\'s Australia, fight dementia website'
-  r.url = 'https://www.fightdementia.org.au/'
 end
 
 iacs = ResultGroup.create! result_category: shw do |g|

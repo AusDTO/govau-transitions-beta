@@ -39,12 +39,17 @@ Feature: Real questions
     When I click the help at home tile
     Then I should arrive at the help at home result page
     And it should have general information about help at home
-    And I should see three possible next steps
-    And I should see a block for getting in-home help
-    And the getting in-home help block should have brief info on My Aged Care
-    And the getting in-home help block should have the My Aged Care phone number
-    And the getting in-home help block should have a link for being assessed
-    And I should see a block for types of in-home help
+    And I should see two possible next steps
+    And I should see a block for getting home help
+    And the getting home help block should have brief info on getting assessed
+    And the getting home help block should have a link for being assessed
+    And I should see a block for arranging an assessment
+    And the arranging an assessment block should have some basic info on arranging an assessment
+    And the arranging an assessment block should have the My Aged Care phone number
+    And there should be an ungrouped result for SA local homes and community services
+    And there should be an ungrouped result for SA hospitals and health services
+    And there should be an ungrouped result for the Fight Dementia website
+    
     And the types of in-home help block should have some basic info
     And the types of in-home help block should have a comparison link
     And I should see a block for fee estimation
