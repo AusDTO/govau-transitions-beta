@@ -101,8 +101,9 @@ class Spinach::Features::RelevantQuestions < Spinach::FeatureSteps
   private
 
   def result_should_have_body(body)
-    @results_page = Pages::ResultSet.new
-    expect(@results_page.result_body_contents).to include body
+    @results_page = Pages::Result.new
+    results_text = @results_page.orphan_results.collect {|r| r.text}.join
+    expect(results_text).to include body
   end
 
   def near_flammable_condition(for_conditional)

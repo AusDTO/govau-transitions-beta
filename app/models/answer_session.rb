@@ -42,7 +42,7 @@ class AnswerSession < ApplicationRecord
   def result_categories
     results.collect {|result|
       result.result_category
-    }.uniq
+    }.uniq.reject(&:blank?)
   end
 
   def result_groups(for_category: nil)

@@ -2,10 +2,16 @@ class Result < ApplicationRecord
   include Storext.model
   include Conditional
 
+  scope :orphans, -> { where('container IS NULL') }
+
   belongs_to :wizard
   belongs_to :container, polymorphic: true
 
   validates :wizard, presence: true
+
+  def orphan?
+    container.nil?
+  end
 
   def result_category
     if container.present?

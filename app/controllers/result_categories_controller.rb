@@ -1,6 +1,9 @@
 class ResultCategoriesController < ApplicationController
   def index
     @result_categories = answer_session.result_categories
+    @orphaned_results = answer_session.results.select do |result|
+      result.orphan?
+    end
   end
 
   def show
