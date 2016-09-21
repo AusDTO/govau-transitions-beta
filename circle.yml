@@ -22,7 +22,7 @@ deployment:
     branch: master
     owner: AusDTO
     commands:
-      - cf api https://api.system.staging.digital.gov.au
-      - cf auth $CF_STAGING_USER $CF_STAGING_PASSWORD
-      - cf target -o govau -s transitions
+      - cf api $CF_API_STAGING
+      - cf auth $CF_USER_STAGING $CF_PASSWORD_STAGING
+      - cf target -o $CF_ORG_STAGING -s $CF_SPACE_STAGING
       - cf push $CIRCLE_PROJECT_REPONAME
