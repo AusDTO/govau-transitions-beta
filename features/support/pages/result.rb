@@ -12,6 +12,7 @@ module Pages
     element :title, 'h1'
 
     sections :tiles, ::Pages::ResultSectionTile, 'nav.results-tiles'
+    elements :orphan_results, 'ul.secondary-links li'
 
     def tile_for_category(category_name)
       tiles.select do |tile|
