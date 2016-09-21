@@ -13,8 +13,8 @@
     = @result_category.rationale
   .steps-list
     - @result_category.result_groups.each do |group|
-      %section.accorion
-        .accordion-button
+      %details.accorion.accordion--controls{:aria => {:hidden => false}}
+        %summary{:aria => {:hidden => false}}
           %span.accordion-content
             = group.title
         .accordion-panel
