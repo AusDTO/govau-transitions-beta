@@ -1,10 +1,10 @@
 class QuestionDecorator < Draper::Decorator
-  include Interpolatable
+  include AnswerSessionContextualised
   delegate_all
 
   def options
     object.options.collect do |option|
-      decorate_interpolatably option
+      option.decorate answer_session_context
     end
   end
 

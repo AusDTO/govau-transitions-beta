@@ -11,7 +11,7 @@ module Pages
     def answer_option(option)
       answers.find { |answer|
         answer.text == option
-      }.find '/input[@type="radio"]'
+      }.find '/input'
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831043743) do
+ActiveRecord::Schema.define(version: 20160920032721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,13 +68,36 @@ ActiveRecord::Schema.define(version: 20160831043743) do
     t.index ["wizard_id"], name: "index_questions_on_wizard_id", using: :btree
   end
 
+  create_table "result_categories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.string   "description"
+    t.string   "rationale"
+    t.integer  "wizard_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["wizard_id"], name: "index_result_categories_on_wizard_id", using: :btree
+  end
+
+  create_table "result_groups", force: :cascade do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "result_category_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["result_category_id"], name: "index_result_groups_on_result_category_id", using: :btree
+  end
+
   create_table "results", force: :cascade do |t|
     t.integer  "wizard_id"
     t.string   "type"
     t.string   "title"
     t.jsonb    "meta"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "container_type"
+    t.integer  "container_id"
+    t.index ["container_type", "container_id"], name: "index_results_on_container_type_and_container_id", using: :btree
     t.index ["wizard_id"], name: "index_results_on_wizard_id", using: :btree
   end
 
@@ -86,5 +109,7 @@ ActiveRecord::Schema.define(version: 20160831043743) do
   end
 
   add_foreign_key "questions", "wizards"
+  add_foreign_key "result_categories", "wizards"
+  add_foreign_key "result_groups", "result_categories"
   add_foreign_key "results", "wizards"
 end
