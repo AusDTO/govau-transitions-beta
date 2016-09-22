@@ -1,0 +1,46 @@
+.results-tiles {
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    @include outer-container;
+  }
+
+  li {
+    list-style-type: none;
+    padding: $base-spacing;
+    background-color: $lighter-aqua;
+    margin-bottom: 1.2em;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: $small-spacing;
+    }
+
+    .number {
+      font-size: 2em;
+      padding-right: 0.5em;
+      font-weight: 700;
+      display: table-cell;
+      & + span {
+        line-height: 2em;
+        vertical-align: bottom;
+        font-weight: 700;
+        display: table-cell;
+      }
+    }
+  }
+}
+
+@include media($tablet) {
+ .results-tiles li {
+   @include span-columns(6 of 12);
+   @include omega(2n);
+ }
+}
+
+.secondary-title {
+  border-bottom: 4px solid $light-aqua;
+}
